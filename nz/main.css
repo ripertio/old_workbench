@@ -77,9 +77,11 @@ footer {
     width: 100%;
     padding: 1em 0 3em 0;
 }
+
 footer .back {
     float: left;
 }
+
 footer .next {
     float: right;
 }
@@ -88,7 +90,8 @@ footer .next {
     main {
         max-width: 90%;
     }
-    .banner{
+
+    .banner {
         width: 100vw;
     }
 }
