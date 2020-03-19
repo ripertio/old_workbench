@@ -35,11 +35,25 @@ a:link, a:visited {
 }
 
 header nav address {
-    font-size 0.9em;
+    font-size: 0.9em;
     font-style: italic;
 }
 
 main {
     max-width: 70%;
     margin: auto;
+}
+
+main p {
+    text-align: justify;
+    
+}
+main-figure {
+    margin-left: 0;
+    width: 100%;
+}
+
+main-figure img{
+    width: 100%;
+    border: 1px solid black;
 }
