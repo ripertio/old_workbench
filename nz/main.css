@@ -16,3 +16,7 @@ header p {
     padding-right: 1em; /*Abstand vom Rand/ in diesemfall von Rechts */
     margin-top: -2em;
 }
+
+.white, .white a:link, .white a:visited {
+    color: white;
+}
