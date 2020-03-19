@@ -30,7 +30,8 @@ header nav img {
     border-radius: 50%;
 }
 
-a:link, a:visited {
+a:link,
+a:visited {
     color: black;
 }
 
@@ -46,14 +47,15 @@ main {
 
 main p {
     text-align: justify;
-    
+
 }
-main-figure {
+
+main figure {
     margin-left: 0;
     width: 100%;
 }
 
-main-figure img{
+main figure img {
     width: 100%;
     border: 1px solid black;
 }
