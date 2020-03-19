@@ -1,22 +1,35 @@
 body {
-   max-width: 1280px; 
-   margin: auto;
-   font-family: Arial;
+    max-width: 1280px;
+    margin: auto;
+    font-family: Arial;
 }
+
 header {
     text-align: center;
 
 }
+
 
 header p {
     font-size: 0.8em;
     /* EM drückt ein Verhältniss aus --> vorteil gegenüber px da es sich immer um verhältnisse handelt */
     font-weight: bold;
     text-align: right;
-    padding-right: 1em; /*Abstand vom Rand/ in diesemfall von Rechts */
+    padding-right: 1em;
+    /*Abstand vom Rand/ in diesemfall von Rechts */
     margin-top: -2em;
 }
 
-.white, .white a:link, .white a:visited {
+.white,
+.white a:link,
+.white a:visited {
     color: white;
+}
+
+header nav img {
+    border-radius: 50%;
+}
+
+a:link, a:visited {
+    color: black;
 }
