@@ -27,8 +27,8 @@ console.log(isOver18)
 let age = 18;
 console.log("über 18", age > 18);
 
-let participants = ("John", "Jane", "Max");
-console.log(participants[3])
+let participants = ["John", "Jane", "Max"];
+console.log(participants)
 console.log("eingräge im Arrey: ", participants.length)
 
 let gameHighscores = [2099, 3010, 3333, 5000]
@@ -64,3 +64,12 @@ console.log (user)
 for (let i=0; i<10; i++) {
     console.log (`Schleife ${i}`);
 }
+
+for (let j = 0; j < participants.length; j++) {
+    const participant = participants[j];
+    console.log(`Teilnermer_in ${j} ${participant}`);
+} 
+
+participants.forEach(participant => {
+    console.log(`Teilnehmer_in ${participant}`)
+});
