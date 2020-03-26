@@ -124,3 +124,15 @@ console.log(firstParagraph);
 //firstParagraph.remove();
 
 firstParagraph.innerHTML ="Test";
+firstParagraph.style.color ="red";
+
+let indentedParas = document.querySelectorAll (".ident");
+console.log(indentedParas);
+
+indentedParas.forEach((para, index) => {
+    console.log(`data attribut LAT ${para.dataset.lat}`)
+    para.innerHTML = `Àbsatz ${index}`;
+    if ( index % 2 == 0) {
+     para.style.color= "pink";
+    }
+});
