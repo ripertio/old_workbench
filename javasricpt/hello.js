@@ -120,4 +120,7 @@ users.forEach(user => {
 
 
 let firstParagraph = document.querySelector ("#pFirst");
-console.log(firstParagraph)
+console.log(firstParagraph);
+//firstParagraph.remove();
+
+firstParagraph.innerHTML ="Test";
