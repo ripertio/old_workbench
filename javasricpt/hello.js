@@ -42,7 +42,7 @@ let user = {
 
 console.log(user)
 user.highscore = 200;
-console.log (user)
+console.log(user)
 
 
 // let a =2
@@ -61,14 +61,14 @@ console.log (user)
 //     console.log ("Leider unter 18");
 // }
 
-for (let i=0; i<10; i++) {
-    console.log (`Schleife ${i}`);
+for (let i = 0; i < 10; i++) {
+    console.log(`Schleife ${i}`);
 }
 
 for (let j = 0; j < participants.length; j++) {
     const participant = participants[j];
     console.log(`Teilnermer_in ${j} ${participant}`);
-} ;
+};
 
 participants.forEach(participant => {
     console.log(`Teilnehmer_in ${participant}`)
@@ -76,33 +76,48 @@ participants.forEach(participant => {
 
 //Funktion
 function showAge(birthYear) {
-    console.log (`Du bist ca. ${2020- birthYear} Jahre Alt`)
+    console.log(`Du bist ca. ${2020- birthYear} Jahre Alt`)
 }
 
-showAge (1994)
+showAge(1994)
 
 function calcAge(birthYear) {
-    return 2020 - birthYear ;
+    return 2020 - birthYear;
 }
 
-console.log (`Max ist ${calcAge(1997)} Jahre alt (ca.)`);
+console.log(`Max ist ${calcAge(1997)} Jahre alt (ca.)`);
 
 
-let birthYears = [1965, 1877, 1985, 2003, 2012 ];
+let birthYears = [1965, 1877, 1985, 2003, 2012];
 console.log(birthYears);
 
 birthYears.forEach(year => {
-    console.log (`Geboren ${year}; heute ca. ${calcAge(year)} Jahre alt.`);
+    console.log(`Geboren ${year}; heute ca. ${calcAge(year)} Jahre alt.`);
 });
 
-let users = [
-    {firstname: "John", lastname: "Bob", birthyear: 1960},
-    {firstname: "Jan", lastname: "doe", birthyear: 1960},
-    {firstname: "max", lastname: "Mensch", birthyear: 1960},
+let users = [{
+        firstname: "John",
+        lastname: "Bob",
+        birthyear: 1960
+    },
+    {
+        firstname: "Jan",
+        lastname: "doe",
+        birthyear: 1960
+    },
+    {
+        firstname: "max",
+        lastname: "Mensch",
+        birthyear: 1960
+    },
 ];
 
 console.log(users);
 
-users.forEach (user => {
+users.forEach(user => {
     console.log(`${user.firstname} ist oder wird heuer ${calcAge(user.birthYear)} Jahre alt.`);
 });
+
+
+let firstParagraph = document.querySelector ("#pFirst");
+console.log(firstParagraph)
