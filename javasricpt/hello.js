@@ -60,3 +60,7 @@ console.log (user)
 // else {
 //     console.log ("Leider unter 18");
 // }
+
+for (let i=0; i<10; i++) {
+    console.log (`Schleife ${i}`);
+}
