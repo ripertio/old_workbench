@@ -17,3 +17,6 @@ let firstname ="Bob"
 let lastname ="Jooo"
 
 console.log ('Name: ', firstname, lastname)
+
+let template =  'Dein Highscore sind ${highscore} Punkte';
+console.log (template);
