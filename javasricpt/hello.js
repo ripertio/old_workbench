@@ -68,7 +68,7 @@ for (let i=0; i<10; i++) {
 for (let j = 0; j < participants.length; j++) {
     const participant = participants[j];
     console.log(`Teilnermer_in ${j} ${participant}`);
-} 
+} ;
 
 participants.forEach(participant => {
     console.log(`Teilnehmer_in ${participant}`)
@@ -80,3 +80,17 @@ function showAge(birthYear) {
 }
 
 showAge (1994)
+
+function calcAge(birthYear) {
+    return 2020 - birthYear ;
+}
+
+console.log (`Max ist ${calcAge(1997)} Jahre alt (ca.)`);
+
+
+let birthYears = [1965, 1877, 1985, 2003, 2012 ];
+console.log(birthYears);
+
+birthYears.forEach(year => {
+    console.log (`Geboren ${year}; heute ca. ${calcAge(year)} Jahre alt.`);
+});
