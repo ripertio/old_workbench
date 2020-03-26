@@ -43,3 +43,20 @@ let user = {
 console.log(user)
 user.highscore = 200;
 console.log (user)
+
+
+// let a =2
+// let b =5
+// console.log (a+b)
+// console.log (a/(b-2))
+
+// a++;
+// console.log(a);
+// let myAge = prompt ("Wie alt bist du?");
+// console.log (`Du bist ${myAge} Jahre alt`);
+// console.log (`über 18? ${myAge >18}`) ;
+// if (myAge > 18) {console.log ("Glückwunsch du bist über 18");
+// }
+// else {
+//     console.log ("Leider unter 18");
+// }
