@@ -14,4 +14,6 @@ L.control.layers({
     "Thunderforest.SpinalMap": L.tileLayer.provider('Thunderforest.SpinalMap'),
     "CyclOSM": L.tileLayer.provider('CyclOSM'),
     "Stamen.Watercolor": L.tileLayer.provider('Stamen.Watercolor'),
+    "Stamen.TonerLite": L.tileLayer.provider('Stamen.TonerLite'),
+    "OpenStreetMap.DE": L.tileLayer.provider('OpenStreetMap.DE'),
 }).addTo(map);
