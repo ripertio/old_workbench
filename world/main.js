@@ -17,3 +17,5 @@ L.control.layers({
     "Stamen.TonerLite": L.tileLayer.provider('Stamen.TonerLite'),
     "OpenStreetMap.DE": L.tileLayer.provider('OpenStreetMap.DE'),
 }).addTo(map);
+
+L.marker ([0,0]).addTo(map);
