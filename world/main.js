@@ -25,10 +25,10 @@ L.control.layers({
 ).addTo(map);
 
 let drawCircles = function (data) {
-    //console.log(CONFIRMED);
+    //console.log(data);
 
-    for (let i = 1; i < CONFIRMED.length; i++) {
-        const row = CONFIRMED[i];
+    for (let i = 1; i < data.length; i++) {
+        const row = data[i];
         console.log(row[2], row[3]);
         let lat = row[2];
         let lng = row[3];
@@ -45,3 +45,5 @@ let drawCircles = function (data) {
         circle.bindPopup(`${reg}: ${val}`);
     }
 };
+
+drawCircles(CONFIRMED)
