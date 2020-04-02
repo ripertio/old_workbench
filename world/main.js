@@ -19,7 +19,7 @@ L.control.layers({
         "Stamen.TonerLite": startLayer,
         "OpenStreetMap.DE": L.tileLayer.provider('OpenStreetMap.DE'),
     }, {
-        "thematische Darstellung": circleGroup
+        "Bestätigte COVID 19 Fälle": circleGroup
     }
 
 ).addTo(map);
@@ -47,5 +47,5 @@ let drawCircles = function (data) {
 };
 
 //drawCircles(CONFIRMED)
-drawCircles(RECOVERED)
-//drawCircles(DEATHS)
+//drawCircles(RECOVERED)
+drawCircles(DEATHS)
