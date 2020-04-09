@@ -24,16 +24,19 @@ L.control.layers({
 
 ).addTo(map);
 
-let drawCircles = function (data) {
+let drawCircles = function () {
     //console.log(data);
     let data = CONFIRMED;
+    let header = CONFIRMED [0];
+    let index = header.length - 1;
+
     for (let i = 1; i < data.length; i++) {
         const row = data[i];
         console.log(row[2], row[3]);
         let lat = row[2];
         let lng = row[3];
         let reg = `${row[0]}${row[1]}`;
-        let val = row[row.length - 1];
+        let val = row[index];
         // let mrk =L.marker ([lat,lng]).addTo(map);
         // mrk.bindPopup(`${reg}: ${val}`);
         let s = 0.5;
