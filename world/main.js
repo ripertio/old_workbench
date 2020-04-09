@@ -26,7 +26,7 @@ L.control.layers({
 
 let drawCircles = function (data) {
     //console.log(data);
-
+    let data = CONFIRMED;
     for (let i = 1; i < data.length; i++) {
         const row = data[i];
         console.log(row[2], row[3]);
@@ -46,6 +46,6 @@ let drawCircles = function (data) {
     }
 };
 
-//drawCircles(CONFIRMED)
+drawCircles()
 //drawCircles(RECOVERED)
-drawCircles(DEATHS)
+//drawCircles(DEATHS)
