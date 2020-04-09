@@ -38,7 +38,10 @@ header nav a {
     height: 80vh;
     border: 1px solid silver;
 }
-
+#slider {
+    width: 80%;
+}
 main a {
     color: black;
 }
+
