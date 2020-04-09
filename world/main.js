@@ -51,7 +51,9 @@ let drawCircles = function () {
         circle.bindPopup(`${reg}: ${val}`);
     }
 };
-
+document.querySelector("#pulldown").onchange = function() {
+    drawCircles();
+}
 drawCircles()
 //drawCircles(RECOVERED)
 //drawCircles(DEATHS)
