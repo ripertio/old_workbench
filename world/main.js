@@ -27,15 +27,18 @@ L.control.layers({
 let drawCircles = function () {
     //console.log(data);
     let data = CONFIRMED;
-    let header = CONFIRMED [0];
+    let header = CONFIRMED[0];
     let index = header.length - 1;
-    let topic = "bestätigt Fälle";
+    let options = document.querySelector("#pulldown").options;
+    let value = options[options.selectedIndex].value;
+    let label = options[options.selectedIndex].text;
+    console.log(value,label,options);
 
     //Datum & Thema anzeigen lassen 
-    document.querySelector("#datum").innerHTML =` am ${header[index]} - ${topic}`;
+    document.querySelector("#datum").innerHTML = ` am ${header[index]} - ${label}`;
     for (let i = 1; i < data.length; i++) {
         const row = data[i];
-        console.log(row[2], row[3]);
+        //console.log(row[2], row[3]);
         let lat = row[2];
         let lng = row[3];
         let reg = `${row[0]}${row[1]}`;
@@ -51,7 +54,7 @@ let drawCircles = function () {
         circle.bindPopup(`${reg}: ${val}`);
     }
 };
-document.querySelector("#pulldown").onchange = function() {
+document.querySelector("#pulldown").onchange = function () {
     drawCircles();
 }
 drawCircles()
