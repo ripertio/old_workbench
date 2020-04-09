@@ -103,7 +103,7 @@ playButton.onclick = function () {
     if (slider.value == slider.max) {
         value = slider.min;
     } else {
-        value =slider.value;
+        value = slider.value;
     }
 
     playButton.value = "⏸️";
