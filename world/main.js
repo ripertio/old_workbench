@@ -50,7 +50,10 @@ let drawCircles = function () {
     document.querySelector("#datum").innerHTML = ` am ${header[index]} - ${label}`;
 
     circleGroup.clearLayers();
-
+//funktion um die großen Kreise nach hinten zu schieben damit die kleinen Kreise auch angewählt werden können
+    data.sort(function compareNumbers(row1, row2) {
+        return row2[index] - row1[index]; 
+    });
     for (let i = 1; i < data.length; i++) {
         const row = data[i];
         //console.log(row[2], row[3]);
@@ -58,6 +61,11 @@ let drawCircles = function () {
         let lng = row[3];
         let reg = `${row[0]}${row[1]}`;
         let val = row[index];
+
+        if (val === "0") {
+            continue;
+            //console.log (val)
+        } ;
         // let mrk =L.marker ([lat,lng]).addTo(map);
         // mrk.bindPopup(`${reg}: ${val}`);
         let s = 0.5;
@@ -77,7 +85,11 @@ let slider = document.querySelector("#slider");
 slider.min = 4;
 slider.max = CONFIRMED[0].length-1;
 slider.step =1;
-slider.value = 5;
+slider.value = slider.max;
+
+slider.onchange = function () {
+    drawCircles();
+}
 
 
 drawCircles()
