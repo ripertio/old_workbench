@@ -40,8 +40,8 @@ let drawCircles = function () {
         color = "blue";
     } else if (value === "deaths") {
         data = DEATHS;
-        color ="purple";
-    } else  {
+        color = "purple";
+    } else {
         data = RECOVERED;
         color = "green";
     };
@@ -50,9 +50,9 @@ let drawCircles = function () {
     document.querySelector("#datum").innerHTML = ` am ${header[index]} - ${label}`;
 
     circleGroup.clearLayers();
-//funktion um die großen Kreise nach hinten zu schieben damit die kleinen Kreise auch angewählt werden können
+    //funktion um die großen Kreise nach hinten zu schieben damit die kleinen Kreise auch angewählt werden können
     data.sort(function compareNumbers(row1, row2) {
-        return row2[index] - row1[index]; 
+        return row2[index] - row1[index];
     });
     for (let i = 1; i < data.length; i++) {
         const row = data[i];
@@ -65,15 +65,15 @@ let drawCircles = function () {
         if (val === "0") {
             continue;
             //console.log (val)
-        } ;
+        };
         // let mrk =L.marker ([lat,lng]).addTo(map);
         // mrk.bindPopup(`${reg}: ${val}`);
         let s = 0.5;
-        let r = Math.sqrt(val * s / Math.PI) *0.5
+        let r = Math.sqrt(val * s / Math.PI) * 0.5
 
         let circle = L.circleMarker([lat, lng], {
             radius: r,
-             color: color
+            color: color
         }).addTo(circleGroup);
         circle.bindPopup(`${reg}: ${val}`);
     }
@@ -83,8 +83,8 @@ document.querySelector("#pulldown").onchange = function () {
 }
 let slider = document.querySelector("#slider");
 slider.min = 4;
-slider.max = CONFIRMED[0].length-1;
-slider.step =1;
+slider.max = CONFIRMED[0].length - 1;
+slider.step = 1;
 slider.value = slider.max;
 
 slider.onchange = function () {
