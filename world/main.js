@@ -30,6 +30,7 @@ let drawCircles = function () {
     let header = CONFIRMED [0];
     let index = header.length - 1;
 
+    document.querySelector("#datum").innerHTML =` am ${header[index]}`;
     for (let i = 1; i < data.length; i++) {
         const row = data[i];
         console.log(row[2], row[3]);
