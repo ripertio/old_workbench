@@ -41,7 +41,7 @@ let drawCircles = function () {
     } else  {
         data = RECOVERED;
     };
-
+    //console.log(CONFIRMED== RECOVERED)
     //Datum & Thema anzeigen lassen 
     document.querySelector("#datum").innerHTML = ` am ${header[index]} - ${label}`;
 
