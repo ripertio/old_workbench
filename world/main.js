@@ -95,3 +95,33 @@ slider.onchange = function () {
 drawCircles()
 //drawCircles(RECOVERED)
 //drawCircles(DEATHS)
+
+let playButton = document.querySelector("#play");
+let runningAnimation = null;
+playButton.onclick = function () {
+    let value = slider.min;
+    if (slider.value == slider.max) {
+        value = slider.min;
+    } else {
+        value =slider.value;
+    }
+
+    playButton.value = "⏸️";
+
+    if (runningAnimation) {
+        window.clearInterval(runningAnimation);
+        playButton.value = "▶️";
+        runningAnimation = null;
+    } else {
+        runningAnimation = window.setInterval(function () {
+            slider.value = value;
+            drawCircles();
+            value++;
+
+            if (value > slider.max) {
+                window.clearInterval(runningAnimation);
+            }
+            console.log(value)
+        }, 250)
+    }
+};
