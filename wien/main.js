@@ -8,8 +8,8 @@ let map = L.map("map", {
     ]
 });
 let sightGroup = L.markerClusterGroup().addTo(map);
-let walkGroup = ;
-let heritageGroup = ;
+let walkGroup = L.featureGroup().addTo(map);;
+let heritageGroup = L.featureGroup().addTo(map);;
 
 L.control.layers({
     "BasemapAT.grau": startLayer,
