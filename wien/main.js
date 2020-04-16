@@ -26,10 +26,10 @@ L.control.layers({
 }, {
     "Stadtspaziergang (Punkte)": sightGroup,
     "wandern" : walkGroup,
-    "heritage": heritageGroup,
+    "Weltkulrutrerbe": heritageGroup,
 }).addTo(map);
 
-let walkUrl = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPAZIERPUNKTOGD &srsName=EPSG:4326&outputFormat=json"
+let sightUrl = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPAZIERPUNKTOGD &srsName=EPSG:4326&outputFormat=json"
 
 let sights = L.geoJson.ajax(sightUrl, {
    pointToLayer: function(point, latlng) {
