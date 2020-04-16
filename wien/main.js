@@ -8,6 +8,8 @@ let map = L.map("map", {
     ]
 });
 let sightGroup = L.markerClusterGroup().addTo(map);
+let walkGroup = ;
+let heritageGroup = ;
 
 L.control.layers({
     "BasemapAT.grau": startLayer,
@@ -22,7 +24,9 @@ L.control.layers({
         L.tileLayer.provider("BasemapAT.overlay")
     ])
 }, {
-    "Stadtspaziergang (Punkte)": sightGroup
+    "Stadtspaziergang (Punkte)": sightGroup,
+    "wandern" : walkGroup,
+    "heritage": heritageGroup,
 }).addTo(map);
 
 let walkUrl = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPAZIERPUNKTOGD &srsName=EPSG:4326&outputFormat=json"
@@ -56,7 +60,7 @@ L.geoJson.ajax(wandern, {
     style: function() {
         return { color: "green", weight: 5};
     }
-}).addTo(map);
+}).addTo(walkGroup);
 
 let heritage ="https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WELTKULTERBEOGD&srsName=EPSG:4326&outputFormat=json";
 L.geoJson.ajax(heritage, {
@@ -67,4 +71,4 @@ L.geoJson.ajax(heritage, {
         console.log("Feature", feature);
         layer.bindPopup(`<h3>${feature.properties.NAME}</h3> <p>${feature.properties.INFO}</p>`);
     }
-}).addTo(map);
+}).addTo(heritageGroup);
