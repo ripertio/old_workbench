@@ -56,13 +56,43 @@ sights.on("data:loaded", function () {
     map.fitBounds(sightGroup.getBounds());
 });
 
-let wandern = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WANDERWEGEOGD&srsName=EPSG:4326&outputFormat=json";
+let wandernRundum = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WANDERWEGEOGD&srsName=EPSG:4326&outputFormat=json";
+let wandernStadt = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WANDERWEGEOGD&srsName=EPSG:4326&outputFormat=json";
 
-L.geoJson.ajax(wandern, {
+L.geoJson.ajax(wandernRundum, {
+    onEachFeature: function (featureRundum, layer) {
+        //console.log("FeatureRundum", featureRundum);
+        layer.bindPopup(`<h3>${featureRundum.properties.BEZ_TEXT}</h3>`);
+    },
+    filter: function (featureRundum) {
+        return featureRundum.properties.TYP === "2";
+    },
     style: function () {
         return {
-            color: "green",
-            weight: 5
+            color: "black",
+            weight: 4,
+            //gepunkted
+            dashArray: "0.1 , 7",
+
+        };
+    },
+}).addTo(walkGroup);
+
+L.geoJson.ajax(wandernStadt, {
+    onEachFeature: function (featureStadt, layer) {
+        console.log("FeatureStadt", featureStadt);
+        layer.bindPopup(`<h3>${featureStadt.properties.BEZ_TEXT} </h3>`);
+    },
+    filter: function (featureStadt) {
+       return featureStadt.properties.TYP === "1";
+    },
+    style: function () {
+        return {
+            color: "black",
+            weight: 4,
+            //gestrichelt
+            dashArray: "10 , 10",
+
         };
     }
 }).addTo(walkGroup);
