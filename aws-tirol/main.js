@@ -30,10 +30,10 @@ let awsUrl = "https://aws.openweb.cc/stations";
 
 
 let aws = L.geoJson.ajax(awsUrl, {
-    filter: function(feature) {
-            return feature.properties.LT  !== null;
-            
-    }, 
+    filter: function (feature) {
+        return feature.properties.LT !== null;
+
+    },
     pointToLayer: function (point, latlng) {
         //console.log("point: ", point);
         let marker = L.marker(latlng, {
