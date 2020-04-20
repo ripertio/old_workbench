@@ -84,7 +84,7 @@ L.geoJson.ajax(wandernStadt, {
         layer.bindPopup(`<h3>${featureStadt.properties.BEZ_TEXT} </h3>`);
     },
     filter: function (featureStadt) {
-       return featureStadt.properties.TYP === "1";
+        return featureStadt.properties.TYP === "1";
     },
     style: function () {
         return {
