@@ -47,6 +47,7 @@ let aws = L.geoJson.ajax(awsUrl, {
         <li>Windgeschwindigkeit: ${point.properties.WG} m/s</li>
         <li>Relative Luftfeuchte: ${point.properties.RH} %</li>
         <li>Schneehöhe: ${point.properties.HS} cm</li>
+        <li> Grafik: <a href=https://lawine.tirol.gv.at/data/grafiken/1100/standard/tag/${point.properties.plot}.png> ${point.properties.plot} </a></li>
         </ul>`);
         console.log("feature in filter", point);
         return marker;
