@@ -80,7 +80,7 @@ let drawTemperature = function(jsonData) {
     }).addTo(overlay.temperature);
 };
 let drawWind = function(jsonData) {
-    console.log("aus der Funktion", jsonData);
+    //console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
         filter: function(feature) {
             return feature.properties.WG;
@@ -105,5 +105,7 @@ aws.on("data:loaded", function (){
     drawWind(aws.toGeoJSON());
 
     map.fitBounds(overlay.stations.getBounds());
-    overlay.wind.addTo(map);
+    overlay.temperature.addTo(map);
+
+    console.log(COLORS);
 });
