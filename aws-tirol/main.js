@@ -89,7 +89,7 @@ let drawWind = function(jsonData) {
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
                 icon: L.divIcon({
-                    html: `<div class="label-wind">${feature.properties.WG*3.6}</div>`,
+                    html: `<div class="label-wind">${(feature.properties.WG*3.6).toFixed(1)}</div>`,
                     className: "ignore-me" //dirty hack
                 })
             })
