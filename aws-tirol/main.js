@@ -38,7 +38,7 @@ let awsUrl = "https://aws.openweb.cc/stations";
 
 let aws = L.geoJson.ajax(awsUrl, {
     filter: function (feature) {
-        return feature.properties.LT /*!== null -->ist unnötig!! */;
+        return feature.properties.LT /*!== null -->ist unnötig!! */ ;
 
     },
     pointToLayer: function (point, latlng) {
@@ -62,7 +62,7 @@ let aws = L.geoJson.ajax(awsUrl, {
     }
 }).addTo(overlay.stations);
 
-let getColor = function(val, ramp) {
+let getColor = function (val, ramp) {
     //console.log(val, ramp);
     let col = "red";
 
@@ -80,14 +80,14 @@ let getColor = function(val, ramp) {
 
 //console.log(color);
 
-let drawTemperature = function(jsonData) {
+let drawTemperature = function (jsonData) {
     //console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
-        filter: function(feature) {
+        filter: function (feature) {
             return feature.properties.LT;
         },
-        pointToLayer: function(feature, latlng) {
-            let color = getColor(feature.properties.LT,COLORS.temperature);
+        pointToLayer: function (feature, latlng) {
+            let color = getColor(feature.properties.LT, COLORS.temperature);
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
                 icon: L.divIcon({
@@ -99,14 +99,14 @@ let drawTemperature = function(jsonData) {
     }).addTo(overlay.temperature);
 };
 
-let drawWind = function(jsonData) {
+let drawWind = function (jsonData) {
     //console.log("aus der Funktion", jsonData);
     L.geoJson(jsonData, {
-        filter: function(feature) {
+        filter: function (feature) {
             return feature.properties.WG;
         },
-        pointToLayer: function(feature, latlng) {
-            let color = getColor(feature.properties.WG*3.6,COLORS.wind);
+        pointToLayer: function (feature, latlng) {
+            let color = getColor(feature.properties.WG * 3.6, COLORS.wind);
             let rotation = feature.properties.WR;
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
@@ -117,14 +117,14 @@ let drawWind = function(jsonData) {
             })
         }
     }).addTo(overlay.wind);
-    
+
 }
 
 
-aws.on("data:loaded", function (){
+aws.on("data:loaded", function () {
     //console.log(aws.toGeoJSON());
     drawTemperature(aws.toGeoJSON()),
-    drawWind(aws.toGeoJSON());
+        drawWind(aws.toGeoJSON());
 
     map.fitBounds(overlay.stations.getBounds());
     overlay.wind.addTo(map);
