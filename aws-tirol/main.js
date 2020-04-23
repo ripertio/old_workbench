@@ -34,7 +34,7 @@ let awsUrl = "https://aws.openweb.cc/stations";
 
 let aws = L.geoJson.ajax(awsUrl, {
     filter: function (feature) {
-        return feature.properties.LT !== null;
+        return feature.properties.LT /*!== null -->ist unnötig!! */;
 
     },
     pointToLayer: function (point, latlng) {
@@ -52,8 +52,15 @@ let aws = L.geoJson.ajax(awsUrl, {
         <li>Schneehöhe: ${point.properties.HS} cm</li>
         <li> Grafik: <a href=https://lawine.tirol.gv.at/data/grafiken/1100/standard/tag/${point.properties.plot}.png> ${point.properties.plot} </a></li>
         </ul>`);
-        console.log("feature in filter", point);
+        //console.log("feature in filter", point);
         return marker;
 
     }
 }).addTo(overlay.stations);
+
+aws.on("data:loaded", function (){
+    console.log(aws.toGeoJSON());
+
+    map.fitBounds(overlay.stations.getBounds());
+    overlay.stations.addTo(map);
+});
