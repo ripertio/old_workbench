@@ -13,6 +13,7 @@ let overlay = {
     temperature: L.featureGroup(),
     wind: L.featureGroup(),
     humidity: L.featureGroup(),
+    snow: L.featureGroup(),
 }
 
 L.control.layers({
@@ -32,6 +33,7 @@ L.control.layers({
     "Temperatur (°C)": overlay.temperature,
     "Windgeschwindigkeit (km/h)": overlay.wind,
     "Relative Feuchte": overlay.humidity,
+    "Schneehöhe (cm)": overlay.snow,
 }).addTo(map);
 
 let awsUrl = "https://aws.openweb.cc/stations";
@@ -130,6 +132,8 @@ let drawHumidity = function (jsonData) {
         },
         pointToLayer: function (feature, latlng) {
             let color = getColor(feature.properties.RH, COLORS.humidity);
+
+            console.log(feature)
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
                 icon: L.divIcon({
@@ -140,14 +144,33 @@ let drawHumidity = function (jsonData) {
         }
     }).addTo(overlay.humidity);
 };
+let drawSnow = function (jsonData) {
+    //console.log("aus der Funktion", jsonData);
+    L.geoJson(jsonData, {
+        filter: function (feature) {
+            return feature.properties.HS;
+        },
+        pointToLayer: function (feature, latlng) {
+            let color = getColor(feature.properties.HS, COLORS.snow);
+            return L.marker(latlng, {
+                title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
+                icon: L.divIcon({
+                    html: `<div class="label-snow" style="background-color:${color}">${feature.properties.HS.toFixed(1)}</div>`,
+                    className: "ignore-me" // dirty hack
+                })
+            })
+        }
+        // wieso gibt es Wettersationen mit negativer Schneehöhe ?
+    }).addTo(overlay.snow);
+};
 
 aws.on("data:loaded", function () {
     //console.log(aws.toGeoJSON());
     drawTemperature(aws.toGeoJSON());
     drawWind(aws.toGeoJSON());
     drawHumidity(aws.toGeoJSON());
-    // drawWind(aws.toGeoJSON());
+    drawSnow(aws.toGeoJSON());
 
     map.fitBounds(overlay.stations.getBounds());
-    overlay.humidity.addTo(map);
+    overlay.snow.addTo(map);
 });
