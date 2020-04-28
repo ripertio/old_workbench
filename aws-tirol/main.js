@@ -133,7 +133,7 @@ let drawHumidity = function (jsonData) {
         pointToLayer: function (feature, latlng) {
             let color = getColor(feature.properties.RH, COLORS.humidity);
 
-            console.log(feature)
+            //console.log(feature)
             return L.marker(latlng, {
                 title: `${feature.properties.name} (${feature.geometry.coordinates[2]}m)`,
                 icon: L.divIcon({
@@ -174,3 +174,15 @@ aws.on("data:loaded", function () {
     map.fitBounds(overlay.stations.getBounds());
     overlay.snow.addTo(map);
 });
+
+let rainviewer = L.control.rainviewer({
+    position: 'bottomleft',
+    nextButtonText: '>',
+    playStopButtonText: 'Start/Stop',
+    prevButtonText: '<',
+    positionSliderLabelText: "Time:",
+    opacitySliderLabelText: "Opacity:",
+    animationInterval: 500,
+    opacity: 0.5
+});
+rainviewer.addTo(map);
