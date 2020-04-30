@@ -1,3 +1,4 @@
+const etappen =
 [
  {
    "nr": "Etappennummer",

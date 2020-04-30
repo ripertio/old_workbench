@@ -21,3 +21,5 @@ L.control.layers({
         L.tileLayer.provider("BasemapAT.overlay")
     ])
 }).addTo(map);
+
+console.log ("Adlerwerg", etappen)
