@@ -22,4 +22,4 @@ L.control.layers({
     ])
 }).addTo(map);
 
-console.log ("Adlerwerg", etappen)
+console.log ("Adlerwerg", ETAPPEN)
