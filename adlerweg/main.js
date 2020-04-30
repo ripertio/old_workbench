@@ -50,6 +50,7 @@ for (const blick of ADLERBLICKE) {
 overlay.adlerblicke.addTo(map);
 
 let drawEtappe = function (nr) {
+    overlay.adlerweg.clearLayers();
     //console.log(ETAPPEN[nr].track);
     let track = ETAPPEN[nr].track.replace("A","");
     //console.log(track);
