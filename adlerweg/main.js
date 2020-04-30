@@ -56,7 +56,7 @@ let drawEtappe = function (nr) {
     let gpx = new L.GPX(`gpx/AdlerwegEtappe${track}.gpx`, {
         async: true,
         marker_options: {
-            startIconUrl: 'icons/number_1.png',
+            startIconUrl: `icons/number_${nr}.png`,
             endIconUrl: 'icons/finish.png',
             shadowUrl: null,
             iconSize: [32.37],
@@ -76,4 +76,18 @@ let drawEtappe = function (nr) {
     }).addTo(overlay.adlerweg);
     overlay.adlerweg.addTo(map);
 };
-drawEtappe()
+drawEtappe(8)
+
+let pulldown = document.querySelector(`#pulldown`);
+//console.log(pulldown);
+
+for (let i = 1; i < ETAPPEN.length; i++) {
+    const etappe = ETAPPEN[i];
+    //console.log(etappe);
+    pulldown.innerHTML +=`<option value="${i}">${etappe.title}</option>`;    
+}
+pulldown.onchange = function(evt) {
+    let nr = evt.target.options[evt.target.options.selectedIndex].value;
+    //console.log(nr); 
+    drawEtappe(nr);
+}
