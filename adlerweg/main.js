@@ -11,7 +11,7 @@ let map = L.map("map", {
 let overlay = {
     adlerblicke: L.featureGroup(),
     adlerweg: L.featureGroup(),
-    
+
 }
 
 L.control.layers({
@@ -28,45 +28,52 @@ L.control.layers({
     ])
 }, {
     "Adlerblicke": overlay.adlerblicke,
-    "Adlerweg": overlay.adlerweg 
+    "Adlerweg": overlay.adlerweg
 }).addTo(map);
 
 //console.log ("Adlerwerg", ADLERBLICKE)
 
 for (const blick of ADLERBLICKE) {
     //console.log(blick);
-    let mrk =L.marker ([blick.lat,blick.lng], {
+    let mrk = L.marker([blick.lat, blick.lng], {
         icon: L.icon({
             iconSize: [32.37], //nötig um zentrierung des Icons zu erzielen
-            iconAnchor: [16,37],
-            popupAnchor: [0,-37],
+            iconAnchor: [16, 37],
+            popupAnchor: [0, -37],
             iconUrl: "icons/panoramicview.png"
         })
     }).addTo(overlay.adlerblicke);
     mrk.bindPopup(`Standort ${blick.standort} (${blick.seehoehe}m)`)
-    
+
 }
 
 overlay.adlerblicke.addTo(map);
 
-let gpx = new L.GPX("gpx/AdlerwegEtappe01.gpx", {
-    async: true,
-    marker_options: {
-        startIconUrl: 'icons/number_1.png',
-        endIconUrl: 'icons/finish.png',
-        shadowUrl: null,
-        iconSize: [32.37],
-        iconAnchor: [16,37],
-        popupAnchor: [0,-37],
-        dashArray: [10,10],
-      },
-      polyline_options: {
-          color: "black",
-          dashArray: [2,5],
+let drawEtappe = function (nr) {
+    //console.log(ETAPPEN[nr].track);
+    let track = ETAPPEN[nr].track.replace("A","");
+    //console.log(track);
+    let gpx = new L.GPX(`gpx/AdlerwegEtappe${track}.gpx`, {
+        async: true,
+        marker_options: {
+            startIconUrl: 'icons/number_1.png',
+            endIconUrl: 'icons/finish.png',
+            shadowUrl: null,
+            iconSize: [32.37],
+            iconAnchor: [16, 37],
+            popupAnchor: [0, -37],
+            dashArray: [10, 10],
+        },
+        polyline_options: {
+            color: "black",
+            dashArray: [2, 5],
 
-      }
-});
+        }
+    });
 
-gpx.on("loaded", function(evt) {
-    map.fitBounds(evt.target.getBounds());
-}).addTo(overlay.adlerweg);
+    gpx.on("loaded", function (evt) {
+        map.fitBounds(evt.target.getBounds());
+    }).addTo(overlay.adlerweg);
+    overlay.adlerweg.addTo(map);
+};
+drawEtappe()
