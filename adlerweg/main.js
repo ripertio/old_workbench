@@ -78,37 +78,44 @@ let drawEtappe = function (nr) {
     overlay.adlerweg.addTo(map);
 
     for (const key in ETAPPEN[nr]) {
-        let val = ETAPPEN[nr][key];
-        //console.log(`et-${key}`);
+        let val = "Einkehr mit Komma"
+        if (key === "einkehr") {
+            val = ETAPPEN[nr][key].replace("#", ", ");
+        } else {
+            val = ETAPPEN[nr][key];
+        }
         let elem = document.querySelector(`#et-${key}`)
         if (key === "track") {
             elem.href = `gpx/AdlerwegEtappe${ETAPPEN[nr][key].replace("A","")}.gpx`;
         } else if (elem) {
             elem.innerHTML = val;
+            //console.log(val)
         }
+        let eink = "Einkehr mit Komma"
+        if (key === "einkehr") {
+            val = ETAPPEN[nr][key].replace("#", ", ");
+        } else {
+            val = ETAPPEN[nr][key];
+        }
+
     }
 };
 drawEtappe(1)
 
-let pulldown = document.querySelector(`#
-                pulldown `);
+let pulldown = document.querySelector(`#pulldown`);
 //console.log("hallo", pulldown);
 
 for (let i = 1; i < ETAPPEN.length; i++) {
     const etappe = ETAPPEN[i];
     //console.log(etappe);
-    pulldown.innerHTML += ` < option value = "${i}" > $ {
-                    etappe.title
-                } < /option>`;
+    pulldown.innerHTML += `<option value="${i}">${etappe.title}</option>`;
 }
 pulldown.onchange = function (evt) {
     let nr = evt.target.options[evt.target.options.selectedIndex].value;
-    //console.log(nr); 
     drawEtappe(nr);
 }
 
 for (let i = 0; i < ETAPPEN.length; i++) {
     const gpx = ETAPPEN[i];
     console.log(gpx.track)
-
-}
+};
