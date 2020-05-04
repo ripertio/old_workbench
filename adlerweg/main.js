@@ -80,7 +80,7 @@ let drawEtappe = function (nr) {
     for (const key in ETAPPEN[nr]) {
         let val = "Einkehr mit Komma"
         if (key === "einkehr") {
-            val = ETAPPEN[nr][key].replace("#", ", ");
+            val = ETAPPEN[nr][key].replace(/#/g, ", ");
         } else {
             val = ETAPPEN[nr][key];
         }
