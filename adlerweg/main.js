@@ -139,4 +139,4 @@ let controlElevation = L.control.elevation({
     dtached: true, 
     elevationDiv:"#profile",
     followMarker: false, 
-});
+}).addTo(map);
