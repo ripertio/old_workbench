@@ -149,6 +149,8 @@ L.control.scale({
     imperial: false,
 }).addTo(map);
 
+let drawMarkers = {};
+
 map.on("zoomend moveend", function (evt) {
     let ext = {
         north: map.getBounds().getNorth(),
@@ -162,6 +164,12 @@ map.on("zoomend moveend", function (evt) {
     let wiki = L.Util.jsonp(url).then(function (data) {
         //console.log(data.geonames);
         for (let article of data.geonames) {
+            let ll = `${article.lat}${article.lng}`;
+            if (drawMarkers[ll]) {
+                continue;                
+            } else {
+                drawMarkers[ll] = true;
+            }
             let png = "";
                 switch (article.feature) {
                     case "city":
