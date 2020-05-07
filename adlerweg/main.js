@@ -76,6 +76,8 @@ let drawEtappe = function (nr) {
 
     gpx.on("loaded", function (evt) {
         map.fitBounds(evt.target.getBounds());
+        controlElevation.clear();
+        controlElevation.load(`gpx/AdlerwegEtappe${track}.gpx`);
     }).addTo(overlay.adlerweg);
     overlay.adlerweg.addTo(map);
 
@@ -120,13 +122,13 @@ pulldown.onchange = function (evt) {
 let drawEinkehr = function () {
     for (let einkehr of EINKEHR) {
         //console.log(einkehr);
-        let mrk = L.marker([einkehr[2],einkehr[3]], {
+        let mrk = L.marker([einkehr[2], einkehr[3]], {
             icon: L.icon({
                 iconSize: [32, 37],
                 iconAnchor: [16, 37],
                 popupAnchor: [0, -37],
                 iconUrl: "icons/restaurant.png"
-            })    
+            })
         }).addTo(overlay.einkehr);
         mrk.bindPopup(`${einkehr[1]} (Etappe ${einkehr[0]})`);
     }
@@ -135,8 +137,8 @@ drawEinkehr();
 overlay.einkehr.addTo(map);
 
 let controlElevation = L.control.elevation({
-    theme: "steelblue-theme",
-    dtached: true, 
-    elevationDiv:"#profile",
-    followMarker: false, 
+    theme: "adler-theme",
+    dtached: true,
+    elevationDiv: "#profile",
+    followMarker: false,
 }).addTo(map);

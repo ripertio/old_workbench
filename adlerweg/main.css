@@ -41,3 +41,7 @@ main h2 {
     height: 70vh;
     border: 1px solid gray;
 }
+
+.adler-theme.elevation-polyline {
+    stroke-opacity: 0.0;
+}
