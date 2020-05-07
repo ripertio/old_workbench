@@ -12,6 +12,7 @@ let overlay = {
     adlerblicke: L.featureGroup(),
     adlerweg: L.featureGroup(),
     einkehr: L.featureGroup(),
+    wikipedia: L.featureGroup(),
 
 }
 
@@ -31,6 +32,7 @@ L.control.layers({
     "Adlerblicke": overlay.adlerblicke,
     "Adlerweg": overlay.adlerweg,
     "Einkehrmöglichkeiten": overlay.einkehr,
+    "Wikipediaartikel": overlay.wikipedia,
 }).addTo(map);
 
 //console.log ("Adlerwerg", ADLERBLICKE)
@@ -143,4 +145,36 @@ let controlElevation = L.control.elevation({
     followMarker: false,
 }).addTo(map);
 
-L.control.scale().addTo(map);
+L.control.scale({
+    imperial: false,
+}).addTo(map);
+
+map.on("zoomend moveend", function (evt) {
+    let ext = {
+        north: map.getBounds().getNorth(),
+        south: map.getBounds().getSouth(),
+        east: map.getBounds().getEast(),
+        west: map.getBounds().getWest()
+    };
+    let url = `https://secure.geonames.org/wikipediaBoundingBoxJSON?north=${ext.north}&south=${ext.south}&east=${ext.east}&west=${ext.west}&username=obelix369&lang=de&maxRows=30`
+    //console.log(url);
+
+    let wiki = L.Util.jsonp(url).then(function (data) {
+        console.log(data.geonames);
+        for (let article of data.geonames) {
+            let mrk = L.marker([article.lat, article.lng]).addTo(overlay.wikipedia);
+            let img = "";
+            if (article.thumbnailImg) {
+                img = `<img src="${article.thumbnailImg}" alt="thumbnail">`
+            }
+            mrk.bindPopup(`
+            <small>${article.feature}</small>
+            <h3>${article.title} (${article.elevation}m)</h3>
+            ${img}
+            <p>${article.summary}</p>
+            <a target="wikipedia" href="https://${article.wikipediaURL}">Wikipedia Artikel</a>
+            `)
+        }
+    });
+});
+overlay.wikipedia.addTo(map);
