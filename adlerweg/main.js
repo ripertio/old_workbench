@@ -118,18 +118,25 @@ pulldown.onchange = function (evt) {
 }
 
 let drawEinkehr = function () {
-    for (const einkehr of EINKEHR) {
-        console.log(einkehr);
-        let mrk = L.marker([einkehr[2], einkehr[3]], {
+    for (let einkehr of EINKEHR) {
+        //console.log(einkehr);
+        let mrk = L.marker([einkehr[2],einkehr[3]], {
             icon: L.icon({
-                iconSize: [32.37],
+                iconSize: [32, 37],
                 iconAnchor: [16, 37],
                 popupAnchor: [0, -37],
-                IconUrl: 'icons/restaurant.png'
-            })
+                iconUrl: "icons/restaurant.png"
+            })    
         }).addTo(overlay.einkehr);
-    mrk.bindPopup(`${[einkehr[1]]} (Etappe ${[einkehr[0]]})`);
-}
+        mrk.bindPopup(`${einkehr[1]} (Etappe ${einkehr[0]})`);
+    }
 };
 drawEinkehr();
 overlay.einkehr.addTo(map);
+
+let controlElevation = L.control.elevation({
+    theme: "steelblue-theme",
+    dtached: true, 
+    elevationDiv:"#profile",
+    followMarker: false, 
+});
