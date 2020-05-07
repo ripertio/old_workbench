@@ -142,3 +142,5 @@ let controlElevation = L.control.elevation({
     elevationDiv: "#profile",
     followMarker: false,
 }).addTo(map);
+
+L.control.scale().addTo(map);
