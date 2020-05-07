@@ -11,6 +11,7 @@ let map = L.map("map", {
 let overlay = {
     adlerblicke: L.featureGroup(),
     adlerweg: L.featureGroup(),
+    einkehr: L.featureGroup(),
 
 }
 
@@ -28,7 +29,8 @@ L.control.layers({
     ])
 }, {
     "Adlerblicke": overlay.adlerblicke,
-    "Adlerweg": overlay.adlerweg
+    "Adlerweg": overlay.adlerweg,
+    "Einkehrmöglichkeiten": overlay.einkehr,
 }).addTo(map);
 
 //console.log ("Adlerwerg", ADLERBLICKE)
@@ -115,7 +117,19 @@ pulldown.onchange = function (evt) {
     drawEtappe(nr);
 }
 
-for (let i = 0; i < ETAPPEN.length; i++) {
-    const gpx = ETAPPEN[i];
-    console.log(gpx.track)
+let drawEinkehr = function () {
+    for (const einkehr of EINKEHR) {
+        console.log(einkehr);
+        let mrk = L.marker([einkehr[2], einkehr[3]], {
+            icon: L.icon({
+                iconSize: [32.37],
+                iconAnchor: [16, 37],
+                popupAnchor: [0, -37],
+                IconUrl: 'icons/restaurant.png'
+            })
+        }).addTo(overlay.einkehr);
+    mrk.bindPopup(`${[einkehr[1]]} (Etappe ${[einkehr[0]]})`);
+}
 };
+drawEinkehr();
+overlay.einkehr.addTo(map);
