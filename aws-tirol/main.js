@@ -38,7 +38,7 @@ L.control.layers({
 
 let awsUrl = "https://aws.openweb.cc/stations";
 
-
+console.log(aws)
 
 let aws = L.geoJson.ajax(awsUrl, {
     filter: function (feature) {
