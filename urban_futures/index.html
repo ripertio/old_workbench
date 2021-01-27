@@ -1,40 +1,196 @@
-<!DOCTYPE html>
-<html lang="de">
+<!DOCTYPE HTML>
+<!--
+	Theory by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>TEST COV- Mental Maps</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.9.1/leaflet-providers.js"></script>
-    <!-- ajay plugin für geojson von einem server -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.min.js"></script>
-   <!--leaflet marker cluster plugin-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/leaflet.markercluster.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.Default.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.4.1/MarkerCluster.css">
-    <link rel="stylesheet" href="main.css">
-    <script  src="data.js"></script>
-    <script defer src="main.js"></script>
-
+	<title>ResearchProject - COVID 19 SEA</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
 <body>
-    <header>
-        <span>TEST COVID 19 Mental Maps</span>
-        
-    </header>
-    <main>
-        
-        <div id="map"></div>
-    </main>
+
+	<!-- Header -->
+	<header id="header">
+		<div class="inner">
+			<a href="index.html" class="logo">Home</a>
+			<nav id="nav">
+				<a href="mentalMaps/mentalmaps_example.html">MentalMaps Example</a>
+				<a href="#two">About Us</a>
+			</nav>
+			<a href="#navPanel" class="navPanelToggle"><span class="fa fa-bars"></span></a>
+		</div>
+	</header>
+
+	<!-- Banner -->
+	<section id="banner">
+		<h1>Welcome to Urban-Planning COV Group</h1>
+		<p>A research project regarding to daily life of local students with the corona pandemic in the city of Bangkok
+			and Kuala Lumpur </p>
+	</section>
+
+	<!-- One -->
+	<section id="one" class="wrapper">
+		<div class="inner">
+			<div class="flex flex-3">
+				<article>
+					<header>
+						<h3>Written Narratives<br /></h3>
+					</header>
+					<p>Short discription:</p>
+					<footer>
+						<a href="#" class="button special">More</a>
+					</footer>
+				</article>
+				<article>
+					<header>
+						<h3>Photostory<br /></h3>
+					</header>
+					<p>Short discription:</p>
+					<footer>
+						<a href="#" class="button special">More</a>
+					</footer>
+				</article>
+				<article>
+					<header>
+						<h3>Mental Maps<br /></h3>
+					</header>
+					<p>Short discription:</p>
+					<footer>
+						<a href="mentalMaps/mentalmaps_example.html" class="button special">More</a>
+					</footer>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<!-- Two -->
+	<section id="two" class="wrapper style1 special">
+		<div class="inner">
+			<header>
+				<h2>About Us</h2>
+				<p>We are a team of six Austrian students working at a research project</p>
+			</header>
+			<div class="flex flex-4">
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic03.jpg" alt="Person 1" />
+					</div>
+					<h3>Charlotta</h3>
+					<p></p>
+				</div>
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic04.jpg" alt="Person 2" />
+					</div>
+					<h3>Jan</h3>
+					<p></p>
+				</div>
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic05.jpg" alt="Person 3" />
+					</div>
+					<h3>Johannes</h3>
+					<p></p>
+				</div>
+			</div>
+			<div class="flex flex-4">
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic06.jpg" alt="Person 4" />
+					</div>
+					<h3>Julia</h3>
+					<p></p>
+				</div>
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic06.jpg" alt="Person 5" />
+					</div>
+					<h3>Lisa</h3>
+					<p></p>
+				</div>
+				<div class="box person">
+					<div class="image round">
+						<img src="images/pic06.jpg" alt="Person 6" />
+					</div>
+					<h3>Richard</h3>
+					<p></p>
+				</div>
+			</div>
+		</div>
+		</div>
+	</section>
+
+	<!-- Three -->
+	<section id="three" class="wrapper special">
+		<div class="inner">
+			<header class="align-center">
+				<h2>Nunc Dignissim</h2>
+				<p>Aliquam erat volutpat nam dui </p>
+			</header>
+			<div class="flex flex-2">
+				<article>
+					<div class="image fit">
+						<img src="images/pic01.jpg" alt="Pic 01" />
+					</div>
+					<header>
+						<h3>Praesent placerat magna</h3>
+					</header>
+					<p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros
+						eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor lorem ipsum.</p>
+					<footer>
+						<a href="#" class="button special">More</a>
+					</footer>
+				</article>
+				<article>
+					<div class="image fit">
+						<img src="images/pic02.jpg" alt="Pic 02" />
+					</div>
+					<header>
+						<h3>Fusce pellentesque tempus</h3>
+					</header>
+					<p>Sed adipiscing ornare risus. Morbi est est, blandit sit amet, sagittis vel, euismod vel, velit.
+						Pellentesque egestas sem. Suspendisse commodo ullamcorper magna non comodo sodales tempus.</p>
+					<footer>
+						<a href="#" class="button special">More</a>
+					</footer>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer id="footer">
+		<div class="inner">
+			<div class="flex">
+				<div class="copyright">
+					&copy; Untitled. Design: <a href="https://templated.co">TEMPLATED</a>. Images: <a
+						href="https://unsplash.com">Unsplash</a>.
+				</div>
+				<ul class="icons">
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-linkedin"><span class="label">linkedIn</span></a></li>
+					<li><a href="#" class="icon fa-pinterest-p"><span class="label">Pinterest</span></a></li>
+					<li><a href="#" class="icon fa-vimeo"><span class="label">Vimeo</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</footer>
+
+
 
 </body>
 
