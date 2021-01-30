@@ -36,11 +36,7 @@ for (let i = 1; i < jake.length; i++) {
 
 
     let mrk = L.marker([lat, lng]).addTo(jakeGroup).on('click', onClick);
-    /*mrk.bindPopup(`Jakes Marker: <br> ${text} "<img style="max-height:400px;max-width:400px;" src="${pic}">`, {
-        minWidth: "500",
-        maxHight: "600px",
-        keepInView: true
-    });*/
+    mrk.bindPopup(`${name} `);
 
     function onClick(e) {
         let texhtml = `<h3>${name}</h3> <br> ${text} "<img style="max-width: 100%; height: auto;" src="${pic}">`
