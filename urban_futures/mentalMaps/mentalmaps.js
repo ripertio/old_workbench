@@ -43,7 +43,7 @@ for (let i = 1; i < jake.length; i++) {
     });*/
 
     function onClick(e) {
-        let texhtml = `${name} <br> ${text} "<img style="max-width: 100%; height: auto;" src="${pic}">`
+        let texhtml = `<h3>${name}</h3> <br> ${text} "<img style="max-width: 100%; height: auto;" src="${pic}">`
         console.log(texhtml);
         document.getElementById("cont").innerHTML = texhtml;
     };
