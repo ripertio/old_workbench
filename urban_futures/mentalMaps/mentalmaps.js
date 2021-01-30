@@ -1,5 +1,5 @@
 let startLayer = L.tileLayer.provider('OpenStreetMap.Mapnik')
-	
+
 let map = L.map("map", {
     center: [47.260628556714636, 11.3876325479441],
     zoom: 14,
@@ -9,7 +9,7 @@ let map = L.map("map", {
 });
 let jakeGroup = L.markerClusterGroup().addTo(map);
 let rosaGroup = L.markerClusterGroup().addTo(map);
-let holdGroup = L.markerClusterGroup().addTo(map);
+let santiagoGroup = L.markerClusterGroup().addTo(map);
 
 
 
@@ -19,49 +19,64 @@ L.control.layers({
 }, {
     "Punkte Jake": jakeGroup,
     "Punkte Rosa": rosaGroup,
-    "Punkte Hold": holdGroup,
+    "Punkte Hold": santiagoGroup,
 }).addTo(map);
 
 jake = person_jake;
 
-console.log(jake);
+//console.log(jake);
 
 for (let i = 1; i < jake.length; i++) {
     const row = jake[i];
     //console.log(row[1], row[2]);
     let lat = row[1];
     let lng = row[2];
-    let pic = row[3];
-    let text = row[4];
-    console.log(lat, lng, pic, text);
+    let pic = row[4];
+    let text = row[3];
+    //console.log(lat, lng, pic, text);
 
-    
-    let mrk =L.marker ([lat,lng]).addTo(jakeGroup);
-    mrk.bindPopup(`Jakes Marker "<img src="${pic}">: ${text}`);
+
+    let mrk = L.marker([lat, lng]).addTo(jakeGroup).on('click', onClick);
+    /*mrk.bindPopup(`Jakes Marker: <br> ${text} "<img style="max-height:400px;max-width:400px;" src="${pic}">`, {
+        minWidth: "500",
+        maxHight: "600px",
+        keepInView: true
+    });*/
+
+    function onClick(e) {
+        let texhtml = `Jakes Marker: <br> ${text} "<img style="max-width: 100%; height: auto;" src="${pic}">`
+        console.log(texhtml);
+        document.getElementById("cont").innerHTML = texhtml;
     };
 
+
+}
 rosa = person_rosa;
 
 
 for (let i = 1; i < rosa.length; i++) {
     const row = rosa[i];
-    console.log(row[1], row[2]);
     let lat = row[1];
     let lng = row[2];
-    let pic = row[3];
-    let text = row[4];
-    console.log(lat, lng, pic, text);
+    let pic = row[4];
+    let text = row[3];
 
+    let mrk = L.marker([lat, lng]).addTo(rosaGroup).on('click', onClick);
+    mrk.bindPopup(`Rosas marker: <br> ${text} "<img style="max-height:400px;max-width:400px;" src="${pic}">`, {
+        minWidth: 600,
+        maxHeight: 500,
+        keepInView: false
+    });
     
-    let mrk =L.marker ([lat,lng]).addTo(rosaGroup);
-    mrk.bindPopup(`Rosas Marker "<img src="${pic}">: ${text}`);
-    };
+};
 
-let allLayers = L.featureGroup([jakeGroup,rosaGroup,holdGroup]).addTo(map);
-map.fitBounds(allLayers.getBounds(),{padding: [5, 5]});
+let allLayers = L.featureGroup([jakeGroup, rosaGroup, santiagoGroup]).addTo(map);
+map.fitBounds(allLayers.getBounds(), {
+    padding: [5, 5]
+});
 
 
-    /*let jake = person_jake , {
+/*let jake = person_jake , {
     pointToLayer: function (point, latlng) {
         let icon = L.icon({
             iconUrl: 'icons/sight.svg',
