@@ -29,6 +29,7 @@ jake = person_jake;
 for (let i = 1; i < jake.length; i++) {
     const row = jake[i];
     //console.log(row[1], row[2]);
+    let name= row[0];
     let lat = row[1];
     let lng = row[2];
     let pic = row[4];
@@ -44,14 +45,14 @@ for (let i = 1; i < jake.length; i++) {
     });*/
 
     function onClick(e) {
-        let texhtml = `Jakes Marker: <br> ${text} "<img style="max-width: 100%; height: auto;" src="${pic}">`
+        let texhtml = `${name} <br> ${text} "<img style="max-width: 100%; height: auto;" src="${pic}">`
         console.log(texhtml);
         document.getElementById("cont").innerHTML = texhtml;
     };
 
 
 }
-rosa = person_rosa;
+/* rosa = person_rosa;
 
 
 for (let i = 1; i < rosa.length; i++) {
@@ -67,15 +68,13 @@ for (let i = 1; i < rosa.length; i++) {
         maxHeight: 500,
         keepInView: false
     });
-    
 };
 
 let allLayers = L.featureGroup([jakeGroup, rosaGroup, santiagoGroup]).addTo(map);
 map.fitBounds(allLayers.getBounds(), {
     padding: [5, 5]
 });
-
-
+*/ 
 /*let jake = person_jake , {
     pointToLayer: function (point, latlng) {
         let icon = L.icon({
