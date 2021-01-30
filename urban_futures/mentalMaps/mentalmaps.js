@@ -18,8 +18,6 @@ L.control.layers({
     "BasemapAT": L.tileLayer.provider("BasemapAT"),
 }, {
     "Punkte Jake": jakeGroup,
-    "Punkte Rosa": rosaGroup,
-    "Punkte Hold": santiagoGroup,
 }).addTo(map);
 
 jake = person_jake;
@@ -52,6 +50,11 @@ for (let i = 1; i < jake.length; i++) {
 
 
 }
+
+let allLayers = L.featureGroup([jakeGroup, rosaGroup, santiagoGroup]).addTo(map);
+map.fitBounds(allLayers.getBounds(), {
+    padding: [5, 5]
+});
 /* rosa = person_rosa;
 
 
