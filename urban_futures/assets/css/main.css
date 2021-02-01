@@ -26,12 +26,10 @@
 	float:left;
 }
 #mentalmaps_cont {
-	border: 1px solid gray;
 	margin: 1px;
     margin-top: 0px;
 	float: right;
 	width: 30%;
-	text-align: ;
 }
 
 .leaflet-popup-content {
