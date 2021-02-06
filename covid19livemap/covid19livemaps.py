@@ -14,6 +14,9 @@ from git import Repo
 
 PATH_OF_GIT_REPO = r'/home/pi/ritchykemp.github.io/.git/'
 COMMIT_MESSAGE = 'comment from python script'
+def git_pull():
+    repo = Repo(PATH_OF_GIT_REPO)
+    repo.git.pull()
 
 def git_push():
     try:
@@ -318,6 +321,9 @@ map.fit_bounds([46.321260016761585, 9.213742540031431],[49.08125860240949, 17.09
 #creating webpage
 outfp = "covid19livemap/covid19_livemaps.html"
 map.save(outfp)
+
+print("pullen vom GIT")
+git_pull()
 
 print("Push befehl durchführen")
 git_push()
