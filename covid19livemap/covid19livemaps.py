@@ -9,6 +9,22 @@ import csv
 import pandas as pd
 import os
 
+
+from git import Repo
+
+PATH_OF_GIT_REPO = r'/home/pi/ritchykemp.github.io/.git/'
+COMMIT_MESSAGE = 'comment from python script'
+
+def git_push():
+    try:
+        repo = Repo(PATH_OF_GIT_REPO)
+        repo.git.add(update=True)
+        repo.index.commit(COMMIT_MESSAGE)
+        origin = repo.remote(name='origin')
+        origin.push()
+    except:
+        print('Some error occured while pushing the code')   
+
 ###################################################################
 ####### Import Daten + Aufbereitung nötiger Variablen #############
 ###################################################################
@@ -303,6 +319,7 @@ map.fit_bounds([46.321260016761585, 9.213742540031431],[49.08125860240949, 17.09
 outfp = "covid19livemap/covid19_livemaps.html"
 map.save(outfp)
 
-
+print("Push befehl durchführen")
+git_push()
 
 print ("DONE")
