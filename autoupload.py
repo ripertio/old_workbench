@@ -4,6 +4,9 @@ from datetime import datetime
 
 PATH_OF_GIT_REPO = r'/home/pi/ritchykemp.github.io/.git/'
 COMMIT_MESSAGE = 'comment from python script'
+def git_pull():
+    repo = Repo(PATH_OF_GIT_REPO)
+    repo.git.pull()
 
 def git_push():
     try:
@@ -22,6 +25,7 @@ def git_push():
 ##########################
 
 print("Hiermit teste ich ob es das ergebnis auch wirklich hochgelad")
+git_pull()
 
 datum = datetime.now()
 
