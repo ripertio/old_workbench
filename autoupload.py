@@ -1,6 +1,8 @@
 from git import Repo
+import datetime
+from datetime import datetime
 
-PATH_OF_GIT_REPO = r'/home/pi/ritchykemp.github.io/.git/'  # make sure .git folder is properly configured
+PATH_OF_GIT_REPO = r'/home/pi/ritchykemp.github.io/.git/'
 COMMIT_MESSAGE = 'comment from python script'
 
 def git_push():
@@ -19,8 +21,12 @@ git_push()
 #eigentlicher CODE
 ##########################
 
-print("Hiermit teste ich ob es das ergebnis auch wirklich hochgelad$
+print("Hiermit teste ich ob es das ergebnis auch wirklich hochgelad")
 
-datum = datatime.now()
+datum = datetime.now()
 
-print (datu
+file = open('Zeitstempelalarm.txt', 'a')
+file.write(datum.strftime('%y-%m-%d %H:%M:%S' '\n'))
+file.close()
+
+print (datum)
