@@ -15,7 +15,7 @@ def git_push():
     except:
         print('Some error occured while pushing the code')    
 
-git_push()
+
 
 ###################################
 #eigentlicher CODE
@@ -30,3 +30,8 @@ file.write(datum.strftime('%y-%m-%d %H:%M:%S' '\n'))
 file.close()
 
 print (datum)
+
+print("Push befehl durchführen")
+git_push()
+
+print ("DONE")
