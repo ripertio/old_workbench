@@ -18,8 +18,14 @@ https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overvi
 
 If you ran your pi on respberrypi OS I found this tutorlal very helpful to install geopandas 
 https://wlog.viltstigen.se/articles/2020/06/19/maps-with-geopandas-and-geoplot/
-
 check if your proj-bin version is really newer then 6.x.x. since otherwise it will not work in python3!!!
+
+###########UPDATE! ########
+with ubuntu server installation was much easier!! 
+simplly install all needed moduls! 
+
+here are a nice like for python moduls
+https://geoffboeing.com/2016/03/scientific-python-raspberry-pi/
 
 After your script runs without errors do the following:
 
