@@ -12,11 +12,14 @@ import os
 
 from git import Repo
 
-PATH_OF_GIT_REPO = r'/home/pi/ritchykemp.github.io/.git/'
+PATH_OF_GIT_REPO = r'/home/ubuntu/ritchykemp.github.io/.git/'
 COMMIT_MESSAGE = 'comment from python script'
 def git_pull():
-    repo = Repo(PATH_OF_GIT_REPO)
-    repo.git.pull()
+    try:
+        repo = Repo(PATH_OF_GIT_REPO)
+        repo.git.pull()
+    except:
+        print("Error ocured while pulling the code")
 
 def git_push():
     try:
