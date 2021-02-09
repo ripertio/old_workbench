@@ -2,7 +2,7 @@ from git import Repo
 import datetime
 from datetime import datetime
 
-PATH_OF_GIT_REPO = r'/home/pi/ritchykemp.github.io/.git/'
+PATH_OF_GIT_REPO = r'/home/ubuntu/ritchykemp.github.io/.git/'
 COMMIT_MESSAGE = 'comment from python script'
 def git_pull():
     repo = Repo(PATH_OF_GIT_REPO)
