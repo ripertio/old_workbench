@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title>RK Projects & Ideas</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-panels.min.js"></script>
+    <script src="js/init.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="css/skel-noscript.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-desktop.css" />
+    </noscript>
+</head>
+
+<body class="homepage">
+
+    <!-- Header -->
+    <div id="header">
+        <div id="nav-wrapper">
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li class="active"><a href="../index.html">Homepage</a></li>
+                    <li><a href="./world/index.html">Weltkarte mit Ausbreitung von COVID 19</a></li>
+                    <li><a href="no-sidebar.html">No Sidebar</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container">
+
+            <!-- Logo -->
+            <div id="logo">
+                <h2><a href="#">RK Projects & Ideas</a></h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="featured">
+        <div class="container">
+            <p>This is a project to install a automatic Covid19 - Livemap of Austria (Bezirke & Bundesländer)
+                The python
+                script is mainly based on numpy geopandas and folium (with all dependencies). <br> Aim is to
+                auto run
+                the python script daily and push the created html file with the map to my git-repo. <br> The
+                script runs
+                on my respberrypi. So what do I need?
+
+                <li>Respberrypi with internet connection:</li>
+                I use Ubuntu Server as OS because it is possible ti install needed python moduls. An easy
+                Tutorial how
+                to install ubuntu on a raspberrypi: <a
+                    href="https://ubuntu.com/tutorials/how-to-install-ubuntu-on-your-raspberry-pi#1-overview">HERE</a>.
+
+                <li>SSh Connection to Pi</li>
+                A Easy tutorial how to connect to your pi via ssh: <a
+                    href="https://42bots.com/tutorials/access-raspberry-pi-terminal-and-desktop-remotely-with-ssh-and-vnc/">HERE</a>
+                .
+
+                <li>Installing Python moduls</li>
+                In my case it was geopandas, pandas, folium, pyproj and numpy. I found this link with several
+                other
+                python moduls that are useful for scientific work <a
+                    href="https://geoffboeing.com/2016/03/scientific-python-raspberry-pi/">HERE</a>
+                So start with:
+                <li>sudo apt update && sudo apt upgrade</li>
+                <li>sudo apt install python3.8</li>
+                <li> sudo apt install python3-pip </li>
+                <li>sudo apt-get install libgdal-dev</li>
+                <li>pip3 install pyproj</li>
+                <li>pip3 install pandas</li>
+                <li>pip3 install geopandas</li>
+                <li>pip3 install folium</li>
+
+                <li>Setting up GIT on your Pi</li>
+
+                <br>
+                After your script runs without errors do the following:
+
+                Add to your code the following functions:
+<br>
+<br>
+                PATH_OF_GIT_REPO = r'YOUR local GIT REPO path .git' COMMIT_MESSAGE = 'comment from python
+                script'
+<br>
+                def git_pull(): repo = Repo(PATH_OF_GIT_REPO) repo.git.pull()
+<br>
+                def git_push(): try: repo = Repo(PATH_OF_GIT_REPO) repo.git.add(update=True)
+                repo.index.commit(COMMIT_MESSAGE) origin = repo.remote(name='origin') origin.push() except:
+                print('Some
+                error occured while pushing the code')
+<br><br>
+                at the beginning your python file run git_pull and an the end git_push
+<br>
+                now; if you run your python script in your git path it should automatically pull and push all
+                changes If
+                id does not work check your git settings (see if your repo origin is based on an ssh key) and if
+                your
+                usre name is set in config --global .
+            </p>
+        </div>
+    </div>
+    </div>
+
+
+
+    <!-- Footer -->
+    <div id="footer">
+        <div class="container">
+            <section>
+                <header>
+                    <a href="mailto:ritchy.kemp@gmail.com">
+                        <h2>Get in touch</h2>
+                    </a>
+                </header>
+            </section>
+        </div>
+    </div>
+
+    <!-- Copyright -->
+    <div id="copyright">
+        <div class="container">
+            Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a
+                href="http://unsplash.com/cc0">CC0</a>)
+        </div>
+    </div>
+
+</body>
+
+</html>
