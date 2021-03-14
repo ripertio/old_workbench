@@ -6,25 +6,26 @@ let map = L.map("map", {
         startLayer
     ]
 });
-let circleGroup = L.featureGroup().addTo(map);
+let keyfeatures = L.featureGroup().addTo(map);
 
 L.control.layers({
-        "OpenTopoMap": L.tileLayer.provider('OpenTopoMap'),
-        //"Stadia.AlidadeSmooth" : L.tileLayer.provider('OStadia.AlidadeSmooth'),
-        //"Stadia.AlidadeSmoothDark" : L.tileLayer.provider('Stadia.AlidadeSmoothDark'),
-        "Thunderforest.OpenCycleMap": L.tileLayer.provider('Thunderforest.OpenCycleMap'),
-        "Thunderforest.SpinalMap": L.tileLayer.provider('Thunderforest.SpinalMap'),
-        "CyclOSM": L.tileLayer.provider('CyclOSM'),
-        "Stamen.Watercolor": L.tileLayer.provider('Stamen.Watercolor'),
         "Stamen.TonerLite": startLayer,
         "OpenStreetMap.DE": L.tileLayer.provider('OpenStreetMap.DE'),
     }, {
-        "Bestätigte COVID 19 Fälle": circleGroup
+        "7 Tages Inzidenz": keyfeatures
     }
 
 ).addTo(map);
+L.geoJson(COUNTRIES).addTo(map);
 
-let drawCircles = function () {
+console.log(cov_data)
+
+
+
+
+
+
+/*let drawCircles = function () {
     //console.log(data);
     let data = CONFIRMED;
     let header = CONFIRMED[0];
@@ -77,7 +78,7 @@ let drawCircles = function () {
         }).addTo(circleGroup);
         circle.bindPopup(`${reg}: ${val}`);
     }
-};
+}; */
 document.querySelector("#pulldown").onchange = function () {
     drawCircles();
 }
