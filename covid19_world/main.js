@@ -16,7 +16,7 @@ L.control.layers({
     }
 
 ).addTo(map);
-L.geoJson(COUNTRIES).addTo(map);
+L.geoJson(cov_data).addTo(map);
 
 console.log(cov_data)
 
