@@ -30,10 +30,21 @@ def git_push():
 ##########################
 #Import Data ############
 ##########################
-url = "https://covid.ourworldindata.org/data/owid-covid-data.json"
+#url = "https://covid.ourworldindata.org/data/owid-covid-data.json"
+url = "covid19_world/datacovidworld.js"
+countries = "covid19_world/world_countries.geojson"
+countries_geo = gpd.read_file(countries)
 rawdata = pd.read_json(url)
+rawdata = rawdata.T
+rawdata.index.name ="id"
+#rawdata.rename(columns = {0:"id"}, inplace=True)
+print (rawdata, countries_geo)
 
-print(rawdata)
+# merging countries GEO + Covid Daten
+
+data = countries_geo.merge(rawdata, on="id", how="left")
+
+print(data.head())
 rawdata.to_json('covid19_world/datacovidworld.js')
 
 with open ('covid19_world/datacovidworld.js', 'r') as original: data = original.read()
