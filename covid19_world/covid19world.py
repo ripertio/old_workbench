@@ -38,18 +38,21 @@ countries_geo = gpd.read_file(countries)
 rawdata = pd.read_json(url)
 rawdata = rawdata.T
 rawdata.index.name ="id"
+#countries_geo = pd.DataFrame(countries_geo)
 print (rawdata.head(10), rawdata.dtypes, countries_geo)
+
 
 # merging countries GEO + Covid Daten
 
-data = countries_geo.merge(rawdata, on="id", how="right")
+data = countries_geo.merge(rawdata, on="id", how="left")
+data['data'] = data["data"].astype(str)
 
 print(type(data), data.dtypes,)
 data.to_file('covid19_world/covworld.js', driver="GeoJSON")
+countries_geo.to_file('covid19_world/countries.js', driver="GeoJSON")
 
-#with open ('covid19_world/covworld.js', 'r') as original: data = original.read()
-#with open ('covid19_world/covworld.js', 'w') as modified: modified.write("const cov_data =[" + data +"]")
-
+with open ('covid19_world/covworld.js', 'r') as original: data = original.read()
+with open ('covid19_world/covworld.js', 'w') as modified: modified.write("const cov_data =[" + data +"]")
 
 
 
