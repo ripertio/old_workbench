@@ -1,4 +1,5 @@
 import geopandas as gpd
+import fiona
 import numpy as np
 import math
 import csv
@@ -37,18 +38,17 @@ countries_geo = gpd.read_file(countries)
 rawdata = pd.read_json(url)
 rawdata = rawdata.T
 rawdata.index.name ="id"
-#rawdata.rename(columns = {0:"id"}, inplace=True)
-print (rawdata, countries_geo)
+print (rawdata.head(10), rawdata.dtypes, countries_geo)
 
 # merging countries GEO + Covid Daten
 
-data = countries_geo.merge(rawdata, on="id", how="left")
+data = countries_geo.merge(rawdata, on="id", how="right")
 
-print(data.head())
-rawdata.to_json('covid19_world/datacovidworld.js')
+print(type(data), data.dtypes,)
+data.to_file('covid19_world/covworld.js', driver="GeoJSON")
 
-with open ('covid19_world/datacovidworld.js', 'r') as original: data = original.read()
-with open ('covid19_world/datacovidworld.js', 'w') as modified: modified.write("const cov_data =[" + data +"]")
+#with open ('covid19_world/covworld.js', 'r') as original: data = original.read()
+#with open ('covid19_world/covworld.js', 'w') as modified: modified.write("const cov_data =[" + data +"]")
 
 
 
