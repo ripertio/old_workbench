@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<!--
+	Linear by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>Network TimeMachine with ubuntu server</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-panels.min.js"></script>
+    <script src="js/init.js"></script>
+    <noscript>
+        <link rel="stylesheet" href="css/skel-noscript.css" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/style-desktop.css" />
+    </noscript>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div id="header">
+        <div id="nav-wrapper">
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Homepage</a></li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="container">
+
+            <!-- Logo -->
+            <div id="logo">
+                <h1><a href="#">Linear</a></h1>
+                <span class="tag">By TEMPLATED</span>
+            </div>
+        </div>
+    </div>
+    <!-- Header -->
+
+    <!-- Main -->
+    <div id="main">
+        <div id="content" class="container">
+            <section>
+                <header>
+                    <h1 id="network-timemachine-with-ubuntu-server">Network TimeMachine with ubuntu server</h1>
+                <p> This little tutorial is how to use e.g. your Respberry Pi (ubuntu server) as Network Time Machine .
+                    This is a nice and cheap version to get rid of plugging &amp; unplugging your backup hard drive</p>
+                </header>
+                
+                <p>This tutorial is a conglomeration of:
+                    <a
+                        href="https://mudge.name/2019/11/12/using-a-raspberry-pi-for-time-machine">https://mudge.name/2019/11/12/using-a-raspberry-pi-for-time-machine</a>
+                    <a
+                        href="https://devtutorial.io/how-to-install-and-configure-samba-on-ubuntu-server-20-04.html">https://devtutorial.io/how-to-install-and-configure-samba-on-ubuntu-server-20-04.html</a>
+                    <a href="https://gist.github.com/ChloeTigre/4c2022c0d1a281deedba6f7539a2e3ae">Samba timemachine
+                        config · GitHub</a>
+                    <a
+                        href="https://saschaeggi.medium.com/use-a-raspberry-pi-4-for-time-machine-works-with-big-sur-1e66a9650789">https://saschaeggi.medium.com/use-a-raspberry-pi-4-for-time-machine-works-with-big-sur-1e66a9650789</a>
+                </p>
+                <h2 id="setting-the-basics">Setting the Basics</h2>
+                <p>So first Things first update your system:
+                    <code>sudo apt-get update &amp;&amp; sudo apt-get upgrade</code></p>
+                <p>Then Install Samba and Avahi Deamon.
+                    Samba (for SMB) is an open Source file sharing protocol officially supported by time Machine and
+                    Avahi deamon displays automatically the server in the finder.
+                    <code>sudo apt-get install samba avahi-daemon</code></p>
+                <p>Install hfsutils &amp; hfsprogs in order to enable ubuntu to deal with the Apple hfs+ format. </p>
+                <p><code>sudo apt-get install hfsutils hfsprogs</code></p>
+                <p>If not done before formate your hard drive
+                    <code>sudo mkfs.hfsplus /dev/sd* -v WANTED_NAME_OF_drive</code></p>
+                <p>Create Mountpoint and give permissions
+                    <code>sudo mkdir /media/XX &amp;&amp; sudo chmod -R 777 /media/XX</code></p>
+                <p>To auto mount your hard drive we need to edit the stab
+                    First determine the UUID of your hard drive <code>ls -lha /dev/disk/by-uuid</code> and copy the UUID
+                    <code>sudo nano /etc/fstab</code>
+                    Then append the following in a new line:
+                    <code>UUID=copied_UUID /media/XX hfsplus force,rw,user,noauto 0 0</code></p>
+                <p>Test if the mounting works:
+                    <code>sudo mount /media/XX</code></p>
+                <p>And finally to enable a writeable mount of your hard drive we need an mount -unmount flow because the
+                    HFS+ partitions my become read only if unmounted incorrectly . Therefore adding a crontab
+                    <code>sudo crontab -e</code></p>
+                <p>And append:
+                    <code>@reboot sleep 30 &amp;&amp; mount /mnt/timemachine &amp;&amp; sleep 30 &amp;&amp; umount
+                        /mnt/timemachine &amp;&amp; sleep 30 &amp;&amp; mount /mnt/timemachine &amp;&amp; sleep 30
+                        &amp;&amp; service avahi-daemon start &amp;&amp; service smbd start</code></p>
+                <h2 id="towards-samba">Towards Samba</h2>
+                <p>First we need to create the user:
+                    <code>sudo adducer USER_NAME</code>
+                    Then set a password for this user:
+                    <code>sudo smbpasswd -a USER_NAME</code></p>
+                <p>Then give ownership towards for the created user:
+                    <code>sudo Clown -R USERNAME: /media/XX</code></p>
+                <p>Configuring Samba: We need to edit the configuration file:
+                    <code>sudo nano /etc/samba/smb.conf</code>
+                    We need to add the following to the end: creating a network drive named backups </p>
+                <p>```[backups] comment = Backups
+                    path = /media/XX
+                    valid users = USER_NAME
+                    browseable = Yes
+                    writable = yes
+                    vfs objects = catia fruit streams_xattr
+                    fruit:aapl = yes
+                    fruit:time machine = yes</p>
+                <pre><code class="lang-`">
+Restart <span class="hljs-keyword">the</span> service:
+`sudo service Smid reload`
+
+Test <span class="hljs-keyword">if</span> <span class="hljs-keyword">the</span> connection works <span class="hljs-keyword">in</span> MAC press <span class="hljs-keyword">in</span> Finder `cmd + K`  <span class="hljs-keyword">and</span> enter:
+`smb://ip.<span class="hljs-built_in">from</span>.ubuntu.server/backups`
+Then you need <span class="hljs-built_in">to</span> enter your created user + password <span class="hljs-keyword">and</span> <span class="hljs-keyword">then</span> you should be able <span class="hljs-built_in">to</span> connect <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> server.
+
+<span class="hljs-comment">## Configuring Avahi deamon</span>
+Configure AVahi is quite easy. You need <span class="hljs-built_in">to</span> edit <span class="hljs-keyword">the</span> samba.service <span class="hljs-built_in">file</span> <span class="hljs-keyword">with</span>
+`sudo nano /etc/avahi/services/samba.service
+
+And passt this configuration:
+</code></pre>
+                <p>&lt;?xml version=„1.0“ standalone=‚no‘?&gt;/&lt;!—<em>-nxml-</em>—&gt;/
+                    &lt;!DOCTYPE service-group SYSTEM „avahi-service.dtd“&gt;</p>
+                <p>
+                    <service-group>
+                        <name replace-wildcards=„yes“>%h</name>
+                        <service>
+                            <type>_smb._tcp</type>
+                            <port>445</port>
+                        </service>
+                        <service>
+                            <type>_adisk._tcp</type>
+                            <port>9</port>
+                            <txt-record>dk0=adVN=backups,adVF=0x82</txt-record>
+                            <txt-record>sys=adVF=0x100</txt-record>
+                        </service>
+                    </service-group>
+                    ```
+                </p>
+                <p>And restart the avahi daemon:
+                    <code>sudo service avahi-daemon restart</code></p>
+                <h2 id="thats-it-">Thats it!</h2>
+                <p>Have fun with your Network Time machine . Now you can select the Network hard drive in your Time
+                    machine settings </p>
+
+
+            </section>
+        </div>
+    </div>
+    <!-- /Main -->
+
+    <!-- Tweet -->
+    <div id="tweet">
+        <div class="container">
+            <section>
+                <blockquote>&ldquo;In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula.
+                    Pellentesque viverra vulputate enim. Aliquam erat volutpat.&rdquo;</blockquote>
+            </section>
+        </div>
+    </div>
+    <!-- /Tweet -->
+
+    <!-- Footer -->
+    <div id="footer">
+        <div class="container">
+            <section>
+                <header>
+                    <h2>Get in touch</h2>
+                    <span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>
+                </header>
+                <ul class="contact">
+                    <li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
+                    <li class="active"><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
+                    <li><a href="#" class="fa fa-dribbble"><span>Pinterest</span></a></li>
+                    <li><a href="#" class="fa fa-tumblr"><span>Google+</span></a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <!-- /Footer -->
+
+    <!-- Copyright -->
+    <div id="copyright">
+        <div class="container">
+            Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a
+                href="http://unsplash.com/cc0">CC0</a>)
+        </div>
+    </div>
+
+
+</body>
+
+</html>

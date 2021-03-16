@@ -6,23 +6,87 @@ let map = L.map("map", {
         startLayer
     ]
 });
-let keyfeatures = L.featureGroup().addTo(map);
+let layer_pop_dens = L.featureGroup().addTo(map);
+let lyer_case_per_100000 =  L.featureGroup();
+
+
+
+//console.log(cov_data[0].features)
+let data = cov_data[0].features;
+
+let country_data = []; // variable für Choropleth
+let Population_density = [];
+let inzidenz7 = []; // variable für Choropleth
+
+for (let i = 1; i < data.length; i++) {
+    let countries = data[i];
+    //console.log(countries.properties.population_density)
+    country_data.push(countries)
+    Population_density.push(countries.properties.population_density)
+
+};
+console.log(country_data);
 
 L.control.layers({
-        "Stamen.TonerLite": startLayer,
-        "OpenStreetMap.DE": L.tileLayer.provider('OpenStreetMap.DE'),
-    }, {
-        "7 Tages Inzidenz": keyfeatures
-    }
+    "Stamen.TonerLite": startLayer,
+    "OpenStreetMap.DE": L.tileLayer.provider('OpenStreetMap.DE'),
+}, {
+    "Population Density": layer_pop_dens,
+    "Fälle pro 100 000 Einwohner_innen" : lyer_case_per_100000,
+}
 
 ).addTo(map);
-L.geoJson(cov_data).addTo(map);
-
-console.log(cov_data)
+L.geoJson(country_data).addTo(layer_pop_dens);
 
 
+function getColor(d) {
+    return d > 1000 ? '#800026' :
+           d > 500  ? '#BD0026' :
+           d > 200  ? '#E31A1C' :
+           d > 100  ? '#FC4E2A' :
+           d > 50   ? '#FD8D3C' :
+           d > 20   ? '#FEB24C' :
+           d > 10   ? '#FED976' :
+                      '#FFEDA0';
+};
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.population_density),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+L.geoJson(country_data, {style: style}).addTo(layer_pop_dens);
 
+function highlightFeature(e) {
+    var layer = e.target;
 
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+}
+console.log(country_data[country_data.length-1].properties.data[country_data[country_data.length-1].properties.data.length-1])
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.data[feature.properties.data.length-1].new_cases_per_million),
+        weight: 1,
+        opacity: 10,
+        color: 'grey',
+        fillOpacity: 0.9
+    };
+}
+L.geoJson(country_data, {style: style}).addTo(lyer_case_per_100000);
 
 
 /*let drawCircles = function () {
