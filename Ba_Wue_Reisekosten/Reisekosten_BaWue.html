@@ -9,23 +9,32 @@
         background: white;
         display: block;
         margin: 0 auto;
+        font-family: 'Arimo', sans-serif;
       }
 
       page[size="A4"] {
-        width: 21cm;
+        width: 20cm;
       }
-
+      #logo {
+        width: 5.5cm;
+      }
       div {
         margin-top: 2cm;
         margin-bottom: 2cm;
         margin-right: 1cm;
         margin-left: 1cm;
       }
-
+      h1 {
+        margin-bottom: 0;
+        font-size: 25px;
+      }
       h3 {
         margin-bottom: 0;
       }
-
+      hr {
+        margin-bottom: 1;
+        margin-top: 1;
+      }
       ul,
       p {
         font-size: small;
@@ -36,23 +45,34 @@
         align-items: center;
 
       }
-
+      input {
+        width: 70%;
+      }
       .input_number {
         width: 2cm;
         text-align: right;
       }
+
       #print_button {
         text-align: center;
       }
+
     }
 
 
     @media print {
       page {
         background: white;
-        width: 21cm;
-        height: 29.7cm;
-
+        width: 20cm;
+        height: 28.7cm;
+        font-family: 'Arimo', sans-serif;
+      }
+      #logo {
+        width: 5.5cm;
+      }
+      h1 {
+        margin-bottom: 0;
+        font-size: 35px;
       }
 
       h3 {
@@ -72,11 +92,7 @@
         display: none;
       }
 
-      page {
-        width: 21cm;
-        height: 29.7cm;
-
-      }
+      
     }
   </style>
 
@@ -85,13 +101,16 @@
 <body>
   <page size="A4">
     <div>
-      <h1 class="center">Reisekostenabrechnung JDAV Baden-Württemberg</h1>
-      <hr />
+      <img align="right" id="logo" src="jdavLogo_Baden-Wuerttemberg_Grst_RGB.svg">
+      <h1 class="center">Reisekostenabrechnung JDAV Ba-Wü</h1> 
+      
+      
       <p>JDAV Landesgeschäftsstelle Baden-Württemberg e.V. <br> Rotebühlstraße 59a <br>70178 Stuttgart</p>
+      <hr />
       <table>
         <tr>
-          <td><input style="width: 90%;" type="text" /></td>
-          <td><input style="width: 90%;" type="text" /></td>
+          <td><input type="text" /></td>
+          <td><input type="text" /></td>
         </tr>
         <tr>
           <td> Vorname </td>
@@ -99,9 +118,9 @@
         </tr>
         <tr>
 
-          <td><input style="width: 90%;" /></td>
+          <td><input /></td>
 
-          <td><input style="width: 90%;" type="text" />
+          <td><input type="text" />
           <td>
         </tr>
         <tr>
@@ -109,7 +128,6 @@
           <td><b>Schulungsnummer</b> </td>
         </tr>
       </table>
-      <hr />
       <table>
         <tr>
           <td>Hinreise am</td>
@@ -144,7 +162,7 @@
                 <option value="0" selected>Keine</option>
                 <option value="0.03">25</option>
                 <option value="0.1">50</option>
-                <option value="1">100</option>
+
               </select>
             </form>
           </td>
@@ -200,7 +218,8 @@
           <td colspan="5"><input style="width: 94%;" /></td>
         </tr>
         <tr>
-          <td colspan="2">Weitere Auslagen (Auflistung per Mail)<br>(z.B. Park-/Mautgebühren, <b>keine</b> Vignetten)</td>
+          <td colspan="2">Weitere Auslagen (Auflistung per Mail)<br>(z.B. Park-/Mautgebühren, <b>keine</b> Vignetten)
+          </td>
 
           <td></td>
           <td><input id="weiterekosten" onchange="berechnung()" type="text" value="0" class="input_number" />&euro;</td>
@@ -263,30 +282,30 @@
       <h3>Ich bitte um Überweisung auf:</h3>
       <table>
         <tr>
-          <td>Name des Geldinstituts</td>
+          <td>IBAN</td>
           <td><input type="text" style="width: 80%;" /></td>
 
-          <td>IBAN</td>
+          <td>BIC</td>
           <td><input type="text" style="width: 100%;" /></td>
         </tr>
       </table>
       <p>Die Reisekostenabrechnung muss bis spätestens 4 Wochen nach Schulungsende bei der Geschäftsstelle eingegangen
         sein. Danach wird eine Gebühr von max. 50,00€ von der Reisekostenabrechnung einbehalten. Nach 8 Wochen wird
-        nichts
-        mehr erstattet. Bitte alle Belege digital dem PDF anhängen/ mitschicken.</p>
+        nichts mehr erstattet. Bitte alle Belege digital dem PDF anhängen/ mitschicken (info@jdav-bw.de).</p>
       <p>Ich versichere die Richtigkeit meiner Angaben.</p>
 
-      <table>
+      <table style="width: 90%;">
         <tr>
-          <td><input type="text" style="width: 70%;"></td>
+          <td ><input type="text" style="width: 70%;"></td>
           <td id="date"></td>
-          <td><input id="sign" />&nbsp;</td>
+          <td><hr/></td>
         </tr>
         <tr>
           <td> Ort </td>
           <td> Datum </td>
           <td>Unterschrift</td>
         </tr>
+
       </table>
 
       <!--Funktion um das Heutige Datum auszugeben Date: -->
