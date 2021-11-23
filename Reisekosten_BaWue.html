@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <!-- Style von der Page:-->
   <style>
     @media screen {
       page {
@@ -152,7 +153,7 @@
           <td align="right" id="bahncardzuschlag"></td>
         </tr>
         <tr>
-          <td> Andere ÖVM (z.B. Bus) </td>
+          <td> Andere ÖV (z.B. Bus) </td>
           <td></td>
           <td></td>
           <td><input id="andere_oevm" onchange="berechnung()" type="text" value="0" class="input_number" />&euro;</td>
@@ -168,8 +169,8 @@
           <td align="right" id="rad_geld"> 0 &euro;</td>
         </tr>
         <tr>
-          <td> PKW/Kleinbus </td>
-          <td> Anzahl Mitfahrer*innen </td>
+          <td> PKW </td>
+          <td> Anzahl Personen im Auto </td>
           <td>
             <form>
               <select id="auswahl_mitfahr" onchange="berechnung()" name="auswahl_mitfahr">
@@ -178,7 +179,7 @@
                 <option value="0.15">3</option>
                 <option value="0.2">4</option>
                 <option value="0.23">5</option>
-                <option value="0.25">>5</option>
+                <option value="0.23">schulungsrelevant</option>
               </select>
             </form>
           </td>
@@ -199,7 +200,7 @@
           <td colspan="5"><input style="width: 94%;" /></td>
         </tr>
         <tr>
-          <td colspan="2">Weitere Auslagen <br>(z.B. Park-/Mautgebühren, <b>keine</b> Vignetten)</td>
+          <td colspan="2">Weitere Auslagen (Auflistung per Mail)<br>(z.B. Park-/Mautgebühren, <b>keine</b> Vignetten)</td>
 
           <td></td>
           <td><input id="weiterekosten" onchange="berechnung()" type="text" value="0" class="input_number" />&euro;</td>
@@ -250,7 +251,7 @@
       <hr />
       <h3>Fahrkostensätze:</h3>
       <ul>
-        <li>Zug / Andere ÖMV: wird voll erstattet; mit BahnCard 25 Zuschuss von 3%; mit BahnCard 50 Zuschuss von 10%
+        <li>Zug / Andere ÖV: wird voll erstattet; mit BahnCard 25 Zuschuss von 3%; mit BahnCard 50 Zuschuss von 10%
         </li>
         <li>Fahrrad:
           0,2€ /km.</li>
