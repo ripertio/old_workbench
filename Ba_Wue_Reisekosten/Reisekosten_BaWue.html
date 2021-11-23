@@ -15,26 +15,29 @@
       page[size="A4"] {
         width: 20cm;
       }
+
       #logo {
         width: 5.5cm;
       }
+
       div {
         margin-top: 2cm;
         margin-bottom: 2cm;
         margin-right: 1cm;
         margin-left: 1cm;
       }
+
       h1 {
+        padding-top: 0cm;
         margin-bottom: 0;
-        font-size: 25px;
+
       }
-      h3 {
-        margin-bottom: 0;
+
+      h4 {
+        margin-block-start: 1em;
+        margin-block-end: 0em;
       }
-      hr {
-        margin-bottom: 1;
-        margin-top: 1;
-      }
+
       ul,
       p {
         font-size: small;
@@ -45,12 +48,18 @@
         align-items: center;
 
       }
+
       input {
         width: 70%;
       }
+
       .input_number {
-        width: 2cm;
+        width: 1.5cm;
         text-align: right;
+      }
+
+      select {
+        width: 1.5cm;
       }
 
       #print_button {
@@ -62,37 +71,64 @@
 
     @media print {
       page {
-        background: white;
-        width: 20cm;
-        height: 28.7cm;
         font-family: 'Arimo', sans-serif;
       }
+
       #logo {
         width: 5.5cm;
       }
-      h1 {
-        margin-bottom: 0;
-        font-size: 35px;
+
+      div {
+        margin-top: 2cm;
+        margin-bottom: 2cm;
+        margin-right: 1cm;
+        margin-left: 1cm;
       }
 
-      h3 {
+      h1 {
+        padding-top: 0cm;
         margin-bottom: 0;
+
+      }
+
+      h4 {
+        margin-block-start: 1em;
+        margin-block-end: 0em;
       }
 
       ul,
       p {
-        font-size: small;
+        font-size: 11px;
+      }
+
+      td {
+        font-size: 11.5px;
       }
 
       table {
         width: 100%;
+        align-items: center;
+
+      }
+
+      input {
+        width: 70%;
+      }
+
+      .input_number {
+        width: 1.5cm;
+        text-align: right;
+      }
+
+      select {
+        width: 1.5cm;
       }
 
       .noprint {
         display: none;
       }
 
-      
+
     }
   </style>
 
@@ -102,9 +138,9 @@
   <page size="A4">
     <div>
       <img align="right" id="logo" src="jdavLogo_Baden-Wuerttemberg_Grst_RGB.svg">
-      <h1 class="center">Reisekostenabrechnung JDAV Ba-Wü</h1> 
-      
-      
+      <h1 class="center">Reisekostenabrechnung</h1>
+
+
       <p>JDAV Landesgeschäftsstelle Baden-Württemberg e.V. <br> Rotebühlstraße 59a <br>70178 Stuttgart</p>
       <hr />
       <table>
@@ -124,8 +160,8 @@
           <td>
         </tr>
         <tr>
-          <td><b>Veranstaltung / Schulung</b></td>
-          <td><b>Schulungsnummer</b> </td>
+          <td>Veranstaltung / Schulung</td>
+          <td>Schulungsnummer</td>
         </tr>
       </table>
       <table>
@@ -143,183 +179,189 @@
         </tr>
       </table>
 
-      <h3>Verkehrsmittel:</h3>
-      <table>
-        <tr>
-          <td> Zug </td>
-          <td> DB, 2. Klasse</td>
-          <td></td>
-          <td><input class="input_number" id="bahn" onchange="berechnung()" type="text" value="0" />&euro;</td>
-          <td align="right" id="bahnkosten">0 &euro;</td>
+      <h4>Verkehrsmittel:</h3>
+        <table>
+          <tr>
+            <td> Zug </td>
+            <td> DB, 2. Klasse</td>
+            <td></td>
+            <td><input class="input_number" id="bahn" onchange="berechnung()" type="text" value="0" />&euro;</td>
+            <td align="right" id="bahnkosten">0 &euro;</td>
 
-        </tr>
-        <tr>
-          <td> </td>
-          <td> BahnCard </td>
-          <td>
-            <form>
-              <select id="auswahl_bahncard" onchange="berechnung()">
-                <option value="0" selected>Keine</option>
-                <option value="0.03">25</option>
-                <option value="0.1">50</option>
+          </tr>
+          <tr>
+            <td> </td>
+            <td> BahnCard </td>
+            <td>
+              <form>
+                <select id="auswahl_bahncard" onchange="berechnung()">
+                  <option value="0" selected>Keine</option>
+                  <option value="0.03">25</option>
+                  <option value="0.1">50</option>
+                </select>
+              </form>
+            </td>
 
-              </select>
-            </form>
-          </td>
+            <td></td>
+            <td align="right" id="bahncardzuschlag"></td>
+          </tr>
+          <tr>
+            <td> Andere ÖV (z.B. Bus) </td>
+            <td></td>
+            <td></td>
+            <td><input id="andere_oevm" onchange="berechnung()" type="text" value="0" class="input_number" />&euro;</td>
 
-          <td></td>
-          <td align="right" id="bahncardzuschlag"></td>
-        </tr>
-        <tr>
-          <td> Andere ÖV (z.B. Bus) </td>
-          <td></td>
-          <td></td>
-          <td><input id="andere_oevm" onchange="berechnung()" type="text" value="0" class="input_number" />&euro;</td>
+            <td align="right" id="oevmkosten"> 0 &euro;</td>
+          </tr>
+          <tr>
+            <td> Fahrrad </td>
+            <td></td>
+            <td></td>
+            <td> <input id="rad_km" onchange="berechnung()" type="text" class="input_number" />km</td>
 
-          <td align="right" id="oevmkosten"> 0 &euro;</td>
-        </tr>
-        <tr>
-          <td> Fahrrad </td>
-          <td></td>
-          <td></td>
-          <td> <input id="rad_km" onchange="berechnung()" type="text" class="input_number" />km</td>
+            <td align="right" id="rad_geld"> 0 &euro;</td>
+          </tr>
+          <tr>
+            <td> PKW </td>
+            <td> Anzahl Personen im Auto </td>
+            <td>
+              <form>
+                <select id="auswahl_mitfahr" onchange="berechnung()">
+                  <option value="0.1" selected>1</option>
+                  <option value="0.15">2</option>
+                  <option value="0.15">3</option>
+                  <option value="0.2">4</option>
+                  <option value="0.23">5</option>
+                  <option value="0.23">schulungsrelevant</option>
+                </select>
+              </form>
+            </td>
+            <td> <input id="pkw_km" onchange="berechnung()" type="text" class="input_number" />km</td>
 
-          <td align="right" id="rad_geld"> 0 &euro;</td>
-        </tr>
-        <tr>
-          <td> PKW </td>
-          <td> Anzahl Personen im Auto </td>
-          <td>
-            <form>
-              <select id="auswahl_mitfahr" onchange="berechnung()" name="auswahl_mitfahr">
-                <option value="0.1" selected>1</option>
-                <option value="0.15">2</option>
-                <option value="0.15">3</option>
-                <option value="0.2">4</option>
-                <option value="0.23">5</option>
-                <option value="0.23">schulungsrelevant</option>
-              </select>
-            </form>
-          </td>
-          <td> <input id="pkw_km" onchange="berechnung()" type="text" class="input_number" />km</td>
+            <td align="right" id="pkw_geld">0 &euro;</td>
 
-          <td align="right" id="pkw_geld">0 &euro;</td>
-
-        <tr>
-          <td> Name Mitfahrer*innen</td>
-          <td></td>
-          <td></td>
-
-
-          <td></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td colspan="5"><input style="width: 94%;" /></td>
-        </tr>
-        <tr>
-          <td colspan="2">Weitere Auslagen (Auflistung per Mail)<br>(z.B. Park-/Mautgebühren, <b>keine</b> Vignetten)
-          </td>
-
-          <td></td>
-          <td><input id="weiterekosten" onchange="berechnung()" type="text" value="0" class="input_number" />&euro;</td>
-
-          <td align="right" id="weiter_kosten"> 0 &euro;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+          <tr>
+            <td> Name Mitfahrer*innen</td>
+            <td></td>
+            <td></td>
 
 
-          <td align="right"><b>Summe</b></td>
-          <td align="right" id="summe" class="input_number"></td>
-        </tr>
-      </table>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td colspan="5"><input style="width: 94%;" /></td>
+          </tr>
+          <tr>
+            <td colspan="2">Weitere Auslagen (Auflistung per Mail)<br>(z.B. Park-/Mautgebühren, <b>keine</b> Vignetten)
+            </td>
 
-      <!--SCRIPT stellt alle Berechnungen an-->
-      <script>
-        function berechnung() {
+            <td></td>
+            <td><input id="weiterekosten" onchange="berechnung()" type="text" value="0" class="input_number" />&euro;
+            </td>
 
-          let bahnkosten = eval(document.getElementById("bahn").value.replace(",", "."));
-          let andere_oevm = eval(document.getElementById("andere_oevm").value.replace(",", "."));
-          let bahncard = document.getElementById("auswahl_bahncard").value;
-          let bahnzuschlag = bahncard * bahnkosten;
-          let rad_km = document.getElementById("rad_km").value;
-          let rad_pauschale = 0.2
-          let radkosten = rad_km * rad_pauschale;
-          let pkw_km = document.getElementById("pkw_km").value;
-          let pkw_pauschale = document.getElementById("auswahl_mitfahr").value;
-          let pkwkosten = pkw_km * pkw_pauschale;
-          let auslagen = eval(document.getElementById("weiterekosten").value.replace(",", "."));
-          console.log(auslagen)
+            <td align="right" id="weiter_kosten"> 0 &euro;</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
 
-          let sum = radkosten + pkwkosten + bahnzuschlag + bahnkosten + andere_oevm + auslagen;
 
-          document.getElementById("bahnkosten").innerHTML = bahnkosten.toFixed(2).replace(".", ",") + "&euro;";
-          document.getElementById("oevmkosten").innerHTML = andere_oevm.toFixed(2).replace(".", ",") + "&euro;";
-          document.getElementById("bahncardzuschlag").innerHTML = bahnzuschlag.toFixed(2).replace(".", ",") + "&euro;";
-          document.getElementById("rad_geld").innerHTML = radkosten.toFixed(2).replace(".", ",") + "&euro;";
-          document.getElementById("pkw_geld").innerHTML = pkwkosten.toFixed(2).replace(".", ",") + "&euro;";
-          document.getElementById("weiter_kosten").innerHTML = auslagen.toFixed(2).replace(".", ",") + "&euro;";
-          document.getElementById("summe").innerHTML = "<b>" + sum.toFixed(2).replace(".", ",") + "&euro;</b>";
-        }
-      </script>
-      <!--SCRIPT ENDE-->
+            <td align="right"><b>Summe</b></td>
+            <td align="right" id="summe" class="input_number"></td>
+          </tr>
+        </table>
 
-      <hr />
-      <h3>Fahrkostensätze:</h3>
-      <ul>
-        <li>Zug / Andere ÖV: wird voll erstattet; mit BahnCard 25 Zuschuss von 3%; mit BahnCard 50 Zuschuss von 10%
-        </li>
-        <li>Fahrrad:
-          0,2€ /km.</li>
-        <li>PKW/Kleinbus: 1 Person = 0,1€/km; 2-3 Personen = 0,15€/km; 4 Personen = 0,2€/km; 5 Personen 0,23€/km; Bei
-          mehr
-          als 5 Personen Rücksprache mit der Geschäftsstelle.</li>
-        <li>Bei Anreise außerhalb Baden-Würrtembergs werden max. 100€ erstattet.</li>
-      </ul>
-      <h3>Ich bitte um Überweisung auf:</h3>
-      <table>
-        <tr>
-          <td>IBAN</td>
-          <td><input type="text" style="width: 80%;" /></td>
+        <!--SCRIPT stellt alle Berechnungen an-->
+        <script>
+          function berechnung() {
 
-          <td>BIC</td>
-          <td><input type="text" style="width: 100%;" /></td>
-        </tr>
-      </table>
-      <p>Die Reisekostenabrechnung muss bis spätestens 4 Wochen nach Schulungsende bei der Geschäftsstelle eingegangen
-        sein. Danach wird eine Gebühr von max. 50,00€ von der Reisekostenabrechnung einbehalten. Nach 8 Wochen wird
-        nichts mehr erstattet. Bitte alle Belege digital dem PDF anhängen/ mitschicken (info@jdav-bw.de).</p>
-      <p>Ich versichere die Richtigkeit meiner Angaben.</p>
+            let bahnkosten = eval(document.getElementById("bahn").value.replace(",", "."));
+            let andere_oevm = eval(document.getElementById("andere_oevm").value.replace(",", "."));
+            let bahncard = document.getElementById("auswahl_bahncard").value;
+            let bahnzuschlag = bahncard * bahnkosten;
+            let rad_km = document.getElementById("rad_km").value;
+            let rad_pauschale = 0.2
+            let radkosten = rad_km * rad_pauschale;
+            let pkw_km = document.getElementById("pkw_km").value;
+            let pkw_pauschale = document.getElementById("auswahl_mitfahr").value;
+            let pkwkosten = pkw_km * pkw_pauschale;
+            let auslagen = eval(document.getElementById("weiterekosten").value.replace(",", "."));
+            console.log(auslagen)
 
-      <table style="width: 90%;">
-        <tr>
-          <td ><input type="text" style="width: 70%;"></td>
-          <td id="date"></td>
-          <td><hr/></td>
-        </tr>
-        <tr>
-          <td> Ort </td>
-          <td> Datum </td>
-          <td>Unterschrift</td>
-        </tr>
+            let sum = radkosten + pkwkosten + bahnzuschlag + bahnkosten + andere_oevm + auslagen;
 
-      </table>
+            document.getElementById("bahnkosten").innerHTML = bahnkosten.toFixed(2).replace(".", ",") + "&euro;";
+            document.getElementById("oevmkosten").innerHTML = andere_oevm.toFixed(2).replace(".", ",") + "&euro;";
+            document.getElementById("bahncardzuschlag").innerHTML = bahnzuschlag.toFixed(2).replace(".", ",") +
+              "&euro;";
+            document.getElementById("rad_geld").innerHTML = radkosten.toFixed(2).replace(".", ",") + "&euro;";
+            document.getElementById("pkw_geld").innerHTML = pkwkosten.toFixed(2).replace(".", ",") + "&euro;";
+            document.getElementById("weiter_kosten").innerHTML = auslagen.toFixed(2).replace(".", ",") + "&euro;";
+            document.getElementById("summe").innerHTML = "<b>" + sum.toFixed(2).replace(".", ",") + "&euro;</b>";
+          }
+        </script>
+        <!--SCRIPT ENDE-->
 
-      <!--Funktion um das Heutige Datum auszugeben Date: -->
-      <script>
-        function format(date) {
-          var d = date.getDate();
-          var m = date.getMonth() + 1;
-          var y = date.getFullYear();
-          return "" + (d <= 9 ? "0" + d : d) + "." + (m <= 9 ? "0" + m : m) + "." + y;
-        }
-        var today = new Date();
-        var dateString = format(today);
-        document.getElementById("date").innerHTML = dateString;
-      </script>
+        <hr />
+        <h4>Fahrkostensätze:</h3>
+          <ul>
+            <li>Zug / Andere ÖV: wird voll erstattet; mit BahnCard 25 Zuschuss von 3%; mit BahnCard 50 Zuschuss von 10%
+            </li>
+            <li>Fahrrad:
+              0,2€ /km.</li>
+            <li>PKW/Kleinbus: 1 Person = 0,1€/km; 2-3 Personen = 0,15€/km; 4 Personen = 0,2€/km; 5 Personen 0,23€/km;
+              Bei
+              mehr
+              als 5 Personen Rücksprache mit der Geschäftsstelle.</li>
+            <li>Bei Anreise außerhalb Baden-Würrtembergs werden max. 100€ erstattet.</li>
+          </ul>
+          <h4>Ich bitte um Überweisung auf:</h3>
+            <table>
+              <tr>
+                <td>IBAN</td>
+                <td><input type="text" style="width: 80%;" /></td>
+
+                <td>BIC</td>
+                <td><input type="text" style="width: 100%;" /></td>
+              </tr>
+            </table>
+            <p>Die Reisekostenabrechnung muss bis spätestens 4 Wochen nach Schulungsende bei der Geschäftsstelle
+              eingegangen
+              sein. Danach wird eine Gebühr von max. 50,00€ von der Reisekostenabrechnung einbehalten. Nach 8 Wochen
+              wird
+              nichts mehr erstattet. Bitte alle Belege digital dem PDF anhängen/ mitschicken (info@jdav-bw.de).</p>
+            <p>Ich versichere die Richtigkeit meiner Angaben.</p>
+
+            <table style="width: 90%;">
+              <tr>
+                <td><input type="text" style="width: 70%;"></td>
+                <td id="date"></td>
+                <td>
+                  <hr />
+                </td>
+              </tr>
+              <tr>
+                <td> Ort </td>
+                <td> Datum </td>
+                <td>Unterschrift</td>
+              </tr>
+
+            </table>
+
+            <!--Funktion um das Heutige Datum auszugeben Date: -->
+            <script>
+              function format(date) {
+                var d = date.getDate();
+                var m = date.getMonth() + 1;
+                var y = date.getFullYear();
+                return "" + (d <= 9 ? "0" + d : d) + "." + (m <= 9 ? "0" + m : m) + "." + y;
+              }
+              var today = new Date();
+              var dateString = format(today);
+              document.getElementById("date").innerHTML = dateString;
+            </script>
     </div>
   </page>
   <div id="print_button">
