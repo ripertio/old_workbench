@@ -223,7 +223,7 @@
           </tr>
           <tr>
             <td> PKW </td>
-            <td> Anzahl Personen <br>im Auto </td>
+            <td> Anzahl Personen im Auto </td>
             <td>
               <form>
                 <select id="auswahl_mitfahr" onchange="berechnung()">
@@ -253,7 +253,29 @@
             <td colspan="5"><input style="width: 94%;" /></td>
           </tr>
           <tr>
-            <td colspan="2" >Weitere Auslagen (Auflistung per Mail)<br>(z.B. Park-/Mautgebühren, <b>keine</b> Vignett Schulungsverpflegung)
+            <td colspan="2">Weitere Auslagen (Auflistung per Mail)
+            </td>
+
+            <td></td>
+            <td><input id="weiterekosten" onchange="berechnung()" type="text" value="0" class="input_number" />&euro;
+            </td>
+
+            <td align="right" id="weiter_kosten"> 0 &euro;</td>
+          </tr>
+          
+          <tr>
+            <td colspan="2">(z.B. Park-/Mautgebühren, <b>keine</b> Vignetten)
+            </td>
+
+            <td></td>
+            <td><input id="weiterekosten" onchange="berechnung()" type="text" value="0" class="input_number" />&euro;
+            </td>
+
+            <td align="right" id="weiter_kosten"> 0 &euro;</td>
+          </tr>
+          q
+          <tr>
+            <td colspan="2">z.B. Verpflegung für den Kurs
             </td>
 
             <td></td>
